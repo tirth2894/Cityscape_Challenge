@@ -12,7 +12,6 @@ body{
 .loading{
     height: 100%;
     width: 100%;
-    color: yellow;
     background-color: rgba(0, 0, 0, 0.801);
 
     display: flex;
@@ -21,28 +20,15 @@ body{
     flex-direction: column;
 }
 
-.loading::before{
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0%;
-    left: 0%;
-    background: url('image/background.PNG') center center/cover;
-    z-index: -1;
-}
-
-.loading > p{
-    text-align: center;
-    font-size: 3rem;
-    font-family: Segoe Print;
+.loading > img{
+    width: 40%;
 }
 
 .loading > .box{
     position: fixed;
     height: 1%;
     width: 0%;
-    background-color: yellow;
+    background-color: rgb(212, 149, 30);
     bottom: 3%;
     align-self: flex-start;
     animation: load 3s 1 0s ease-in-out forwards;

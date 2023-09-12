@@ -18,39 +18,23 @@ body{
 .loading{
     height: 100%;
     width: 100%;
-    color: yellow;
-    background-color: rgba(0, 0, 0, 0.637);
+    background-color: rgba(0, 0, 0, 0.801);
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    display: none;
 }
 
-.loading::before{
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0%;
-    left: 0%;
-    background: url('image/background.PNG') center center/cover;
-    opacity: .7;
-    z-index: -1;
-}
-
-.loading > p{
-    text-align: center;
-    font-size: 3rem;
-    font-family: Segoe Print;
+.loading > img{
+    width: 40%;
 }
 
 .loading > .box{
     position: fixed;
     height: 1%;
     width: 0%;
-    background-color: yellow;
+    background-color: rgb(212, 149, 30);
     bottom: 3%;
     align-self: flex-start;
     animation: load 3s 1 0s ease-in-out forwards;
@@ -59,13 +43,13 @@ body{
 @keyframes load {
     100%{
         width: 100%;
-    }
+    } 
 }
 
 /* Navbar */
 .navbar{
     background-color: rgba(0, 0, 0, 0.719);
-    position: absolute;
+    position: fixed;
     top: 0%;
     left: 0%;
     padding: 1%;
@@ -75,25 +59,26 @@ body{
     font-size: 1.2rem;
 }
 
+.hide{
+    display: none;
+}
 
 /* Camera */
 .camera{
+    height: 99.5%;
+    width: 99.5%;
     overflow: hidden;
-    height: 100%;
-    width: 100%;
-
 }
-
 
 /* MAP */
 .map{
     height: 200%;
-    width: 180%;
+    width: 190%;
     background-color: rgb(58, 57, 57);
-    position: absolute;
-    top: 0%;
-    left: 0%;
+    position: relative;
     overflow: hidden;
+
+    display: block;
 }
 
 .item{
@@ -108,19 +93,21 @@ body{
 /* Player */
 .player{
     position: absolute;
-    width: calc(100px / 2);
-    height: calc(110px / 2);
+    width: calc(8% / 2);
+    height: 8%;
     top: 0%;
     left: 20%;
     z-index: 1;
     overflow: hidden;
     transition: transform .5s;
+
+    border: 2px solid red;
 }
 
 .player > img {
     position: relative;
-    width: 95px;
-    height: 50px;
+    height: 100%;
+    width: 200%;
     top: 0%;
     left: 0%;
 }
@@ -183,7 +170,7 @@ body{
 
 #mall{
     background-image: url("image/walkway.jfif");
-    height: 30%;
+    height: 27%;
     width: 25%;
     top: 0%;
     left: 75%;
@@ -301,4 +288,195 @@ body{
 #johnhome > img{
     height: 100%;
     width: 100%;
+}
+
+
+.car{
+    position: absolute;
+    height: 10%;
+}
+
+.car > img {
+    height: 100%;
+    width: 100%;
+}
+
+#car1{
+    left: 34%;
+    animation: car1 12s infinite linear;
+}
+
+#car2{
+    top: 100%;
+    left: 81%;
+    transform: rotate(180deg);
+    animation: car2 12s infinite linear;
+}
+
+#car3{
+    top: 53%;
+    left: 110%;
+    transform: rotate(90deg);
+    animation: car3 12s 2s infinite linear;
+}
+
+@keyframes car1 {
+    0%{
+        top: -2%;
+        left: 34%;
+        transform: rotate(0deg);
+    }
+
+    20%{
+        top: 23.5%;
+        left: 34%;
+        transform: rotate(0deg);
+    }
+    23%{
+        top: 23.5%;
+        left: 34%;
+        transform: rotate(90deg);
+    }
+    40%{
+        top: 23.5%;
+        left: 21%;
+        transform: rotate(90deg);
+    }
+    43%{
+        top: 23.5%;
+        left: 21%;
+        transform: rotate(0deg);
+    }
+    60%{
+        top: 65%;
+        left: 21%;
+        transform: rotate(0deg);
+    }
+    63%{
+        top: 65%;
+        left: 21%;
+        transform: rotate(-90deg);
+    }
+    80%{
+        top: 65%;
+        left: 41%;
+        transform: rotate(-90deg);
+    }
+    83%{
+        top: 65%;
+        left: 41%;
+        transform: rotate(0deg);
+    }
+    100%{
+        top: 100%;
+        left: 41%;
+        transform: rotate(0deg);
+    }
+}
+
+
+@keyframes car2 {
+    0%{
+        top: 100%;
+        left: 81%;
+        transform: rotate(180deg);    
+    }
+    20%{
+        top: 65%;
+        left: 81%;
+        transform: rotate(180deg);
+    }
+    23%{
+        top: 65%;
+        left: 81%;
+        transform: rotate(90deg);
+    }
+    40%{
+        top: 65%;
+        left: 51%;
+        transform: rotate(90deg);
+    }
+    43%{
+        top: 65%;
+        left: 51%;
+        transform: rotate(180deg);
+    }
+    60%{
+        top: 25%;
+        left: 51%;
+        transform: rotate(180deg);
+    }
+    63%{
+        top: 25%;
+        left: 51%;
+        transform: rotate(90deg);
+    }
+    100%{
+        top: 25%;
+        left: -10%;
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes car3 {
+    0%{
+        top: 53%;
+        left: 100%;
+        transform: rotate(90deg);
+    }
+    20%{
+        top: 53%;
+        left: 76%;
+        transform: rotate(90deg);
+    }
+    23%{
+        top: 53%;
+        left: 76%;
+        transform: rotate(180deg);
+    }
+    40%{
+        top: 26%;
+        left: 76%;
+        transform: rotate(180deg);
+    }
+    43%{
+        top: 26%;
+        left: 76%;
+        transform: rotate(90deg);
+    }
+    60%{   
+        top: 26%;
+        left: 51%;
+        transform: rotate(90deg);
+    }
+    63%{
+        top: 26%;
+        left: 51%;
+        transform: rotate(0deg);
+    }
+    80%{
+        top: 65%;
+        left: 51%;
+        transform: rotate(0deg);        
+    }
+    83%{
+        top: 65%;
+        left: 51%;
+        transform: rotate(90deg);        
+    }
+    100%{
+        top: 65%;
+        left: 0%;
+        transform: rotate(90deg);        
+    }
+}
+
+
+.insideMap{
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    display: none;
+    color: white;
+    font-size: 230px;
 }

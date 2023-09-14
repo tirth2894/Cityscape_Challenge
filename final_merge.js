@@ -22,21 +22,78 @@ let theater = document.getElementById("theater");
 
 let message = document.getElementById("msg");
 
+const speed = 5;
 
 setTimeout(() => {
-    load.classList.add("hide");
+    load.style.display = "none";
+    player.style.display = "block";
+
+    mapUpdate(map);
+    playerupdate();
 }, 3500);
 
-function update() {
 
-    let chara = document.getElementById("character");
+function mapUpdate(placeMap) {
     let camera_width = parseInt(getComputedStyle(camera).width);
     let camera_height = parseInt(getComputedStyle(camera).height);
     let map_width = parseInt(getComputedStyle(map).width);
     let map_height = parseInt(getComputedStyle(map).height);
+    let pos;
+
+
+    addEventListener('keydown', e => {
+
+        switch (e.key) {
+            case 'w':
+            case 'ArrowUp':
+
+                pos = parseInt(getComputedStyle(map).top);
+
+                if (pos < 0) {
+                    map.style.top = pos + speed + "px";
+                }
+                break;
+
+
+            case 's':
+            case 'ArrowDown':
+                pos = parseInt(getComputedStyle(map).top);
+
+                if (Math.abs(pos) < (map_height - camera_height)) {
+                    map.style.top = pos - speed + "px";
+                }
+                break;
+
+
+            case 'a':
+            case 'ArrowLeft':
+                pos = parseInt(getComputedStyle(map).left);
+
+                if (pos < 0) {
+                    map.style.left = pos + speed + "px";
+                }
+                break;
+
+
+            case 'd':
+            case 'ArrowRight':
+                pos = parseInt(getComputedStyle(map).left);
+
+                if (Math.abs(pos) < (map_width - camera_width)) {
+                    map.style.left = pos - speed + "px";
+                }
+                break;
+        }
+    });
+}
+
+function playerupdate() {
+
+    let chara = document.getElementById("character");
+    let camera_width = parseInt(getComputedStyle(camera).width);
+    let camera_height = parseInt(getComputedStyle(camera).height);
     let player_height = parseInt(getComputedStyle(player).height);
     let player_width = parseInt(getComputedStyle(player).width);
-    let speed = 5;
     let pos;
 
 
@@ -52,12 +109,6 @@ function update() {
             case 'w':
             case 'ArrowUp':
 
-                pos = parseInt(getComputedStyle(map).top);
-
-                if (pos < 0) {
-                    map.style.top = pos + speed + "px";
-                }
-
                 pos = parseInt(getComputedStyle(player).top);
 
                 if (pos > 0) {
@@ -71,11 +122,6 @@ function update() {
 
             case 's':
             case 'ArrowDown':
-                pos = parseInt(getComputedStyle(map).top);
-
-                if (Math.abs(pos) < (map_height - camera_height)) {
-                    map.style.top = pos - speed + "px";
-                }
 
                 pos = parseInt(getComputedStyle(player).top);
 
@@ -90,11 +136,6 @@ function update() {
 
             case 'a':
             case 'ArrowLeft':
-                pos = parseInt(getComputedStyle(map).left);
-
-                if (pos < 0) {
-                    map.style.left = pos + speed + "px";
-                }
 
                 pos = parseInt(getComputedStyle(player).left);
 
@@ -109,11 +150,6 @@ function update() {
 
             case 'd':
             case 'ArrowRight':
-                pos = parseInt(getComputedStyle(map).left);
-
-                if (Math.abs(pos) < (map_width - camera_width)) {
-                    map.style.left = pos - speed + "px";
-                }
 
                 pos = parseInt(getComputedStyle(player).left);
 
@@ -137,31 +173,31 @@ function update() {
     });
 }
 
-update();
+function check(item) {
 
+    let itemPosition = item.getBoundingClientRect();
+    let playerPosition = player.getBoundingClientRect();
 
+    let player_top = Math.abs(playerPosition.top);
+    let player_left = Math.abs(playerPosition.left);
+    let player_right = Math.abs(playerPosition.right);
+    let player_bottom = Math.abs(playerPosition.bottom);
 
-function goinside(placeMap, place) {
+    let item_width = Math.abs(itemPosition.width);
+    let item_height = Math.abs(itemPosition.height);
 
-    addEventListener("keypress", e => {
-        if (e.code == "Enter" && check(place)) {
-            map.style.display = "none";
-            placeMap.style.display = "block";
+    let item_top = Math.abs(itemPosition.top);
+    let item_left = Math.abs(itemPosition.left);
+    let item_right = Math.abs(itemPosition.right);
+    let item_bottom = Math.abs(itemPosition.bottom);
 
-            message.innerHTML = "Press ENTER to exit..";
-
-
-            addEventListener("keypress", e => {
-                if (e.code == "Enter") {
-                    placeMap.style.display = "none";
-                    map.style.display = "block";
-                    message.innerHTML = "";
-                }
-            })
-        }
-    })
+    if (player_top >= item_top && player_bottom <= item_bottom && player_left >= item_left && player_right <= item_right) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
-
 
 function overlap() {
 
@@ -260,29 +296,25 @@ function overlap() {
     }
 }
 
-function check(item) {
+function goinside(placeMap, place) {
 
-    let itemPosition = item.getBoundingClientRect();
-    let playerPosition = player.getBoundingClientRect();
+    addEventListener("keypress", e => {
+        if (e.code == "Enter" && check(place)) {
+            map.style.display = "none";
+            placeMap.style.display = "block";
 
-    let player_top = Math.abs(playerPosition.top);
-    let player_left = Math.abs(playerPosition.left);
-    let player_right = Math.abs(playerPosition.right);
-    let player_bottom = Math.abs(playerPosition.bottom);
+            mapUpdate(placeMap);
+            message.innerHTML = "Press ENTER to exit..";
 
-    let item_width = Math.abs(itemPosition.width);
-    let item_height = Math.abs(itemPosition.height);
 
-    let item_top = Math.abs(itemPosition.top);
-    let item_left = Math.abs(itemPosition.left);
-    let item_right = Math.abs(itemPosition.right);
-    let item_bottom = Math.abs(itemPosition.bottom);
-
-    if (player_top >= item_top && player_bottom <= item_bottom && player_left >= item_left && player_right <= item_right) {
-        return true;
-    }
-    else {
-        return false;
-    }
+            addEventListener("keypress", e => {
+                if (e.code == "Enter") {
+                    placeMap.style.display = "none";
+                    map.style.display = "block";
+                    message.innerHTML = "";
+                }
+            })
+        }
+    })
 }
 

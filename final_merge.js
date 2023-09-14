@@ -36,8 +36,8 @@ setTimeout(() => {
 function mapUpdate(placeMap) {
     let camera_width = parseInt(getComputedStyle(camera).width);
     let camera_height = parseInt(getComputedStyle(camera).height);
-    let map_width = parseInt(getComputedStyle(map).width);
-    let map_height = parseInt(getComputedStyle(map).height);
+    let map_width = parseInt(getComputedStyle(placeMap).width);
+    let map_height = parseInt(getComputedStyle(placeMap).height);
     let pos;
 
 
@@ -47,40 +47,40 @@ function mapUpdate(placeMap) {
             case 'w':
             case 'ArrowUp':
 
-                pos = parseInt(getComputedStyle(map).top);
+                pos = parseInt(getComputedStyle(placeMap).top);
 
                 if (pos < 0) {
-                    map.style.top = pos + speed + "px";
+                    placeMap.style.top = pos + speed + "px";
                 }
                 break;
 
 
             case 's':
             case 'ArrowDown':
-                pos = parseInt(getComputedStyle(map).top);
+                pos = parseInt(getComputedStyle(placeMap).top);
 
                 if (Math.abs(pos) < (map_height - camera_height)) {
-                    map.style.top = pos - speed + "px";
+                    placeMap.style.top = pos - speed + "px";
                 }
                 break;
 
 
             case 'a':
             case 'ArrowLeft':
-                pos = parseInt(getComputedStyle(map).left);
+                pos = parseInt(getComputedStyle(placeMap).left);
 
                 if (pos < 0) {
-                    map.style.left = pos + speed + "px";
+                    placeMap.style.left = pos + speed + "px";
                 }
                 break;
 
 
             case 'd':
             case 'ArrowRight':
-                pos = parseInt(getComputedStyle(map).left);
+                pos = parseInt(getComputedStyle(placeMap).left);
 
                 if (Math.abs(pos) < (map_width - camera_width)) {
-                    map.style.left = pos - speed + "px";
+                    placeMap.style.left = pos - speed + "px";
                 }
                 break;
         }

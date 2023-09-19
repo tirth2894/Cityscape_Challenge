@@ -178,18 +178,18 @@ function check(item) {
     let itemPosition = item.getBoundingClientRect();
     let playerPosition = player.getBoundingClientRect();
 
-    let player_top = Math.abs(playerPosition.top);
-    let player_left = Math.abs(playerPosition.left);
-    let player_right = Math.abs(playerPosition.right);
-    let player_bottom = Math.abs(playerPosition.bottom);
+    let player_top = playerPosition.top;
+    let player_left = playerPosition.left;
+    let player_right = playerPosition.right;
+    let player_bottom = playerPosition.bottom;
 
-    let item_width = Math.abs(itemPosition.width);
-    let item_height = Math.abs(itemPosition.height);
+    let item_width = itemPosition.width;
+    let item_height = itemPosition.height;
 
-    let item_top = Math.abs(itemPosition.top);
-    let item_left = Math.abs(itemPosition.left);
-    let item_right = Math.abs(itemPosition.right);
-    let item_bottom = Math.abs(itemPosition.bottom);
+    let item_top = itemPosition.top;
+    let item_left = itemPosition.left;
+    let item_right = itemPosition.right;
+    let item_bottom = itemPosition.bottom;
 
     if (player_top >= item_top && player_bottom <= item_bottom && player_left >= item_left && player_right <= item_right) {
         return true;
@@ -202,119 +202,86 @@ function check(item) {
 function overlap() {
 
     if (check(elisahome)) {
-        message.innerHTML = "Press ENTER to go to inside the elisahome..";
-
         let tempMap = document.getElementById("elisahomeMap");
         goinside(tempMap, elisahome);
     }
     else if (check(policestation)) {
-        message.innerHTML = "Press ENTER to go to inside the policestation..";
-
         let tempMap = document.getElementById("policestationMap");
         goinside(tempMap, policestation);
     }
     else if (check(firestation)) {
-        message.innerHTML = "Press ENTER to go to inside the firestation..";
-
         let tempMap = document.getElementById("firestationMap");
         goinside(tempMap, firestation);
     }
     else if (check(govtoffice)) {
-        message.innerHTML = "Press ENTER to go to inside the govtoffice..";
-
         let tempMap = document.getElementById("govtofficeMap");
         goinside(tempMap, govtoffice);
     }
     else if (check(mall)) {
-        message.innerHTML = "Press ENTER to go to inside the mall..";
-
         let tempMap = document.getElementById("mallMap");
         goinside(tempMap, mall);
     }
     else if (check(hospital)) {
-        message.innerHTML = "Press ENTER to go to inside the hospital..";
-
         let tempMap = document.getElementById("hospitalMap");
         goinside(tempMap, hospital);
     }
     else if (check(gamezone)) {
-        message.innerHTML = "Press ENTER to go to inside the gamezone..";
-
         let tempMap = document.getElementById("gamezoneMap");
         goinside(tempMap, gamezone);
     }
     else if (check(school)) {
-        message.innerHTML = "Press ENTER to go to inside the school..";
-
         let tempMap = document.getElementById("schoolMap");
         goinside(tempMap, school);
     }
     else if (check(postoffice)) {
-        message.innerHTML = "Press ENTER to go to inside the postoffice..";
-
         let tempMap = document.getElementById("postofficeMap");
         goinside(tempMap, postoffice);
     }
     else if (check(home)) {
-        message.innerHTML = "Press ENTER to go to inside the home..";
-
         let tempMap = document.getElementById("homeMap");
         goinside(tempMap, home);
     }
     else if (check(bank)) {
-        message.innerHTML = "Press ENTER to go to inside the bank..";
-
         let tempMap = document.getElementById("bankMap");
         goinside(tempMap, bank);
     }
     else if (check(hotel)) {
-        message.innerHTML = "Press ENTER to go to inside the hotel..";
-
         let tempMap = document.getElementById("hotelMap");
         goinside(tempMap, hotel);
     }
     else if (check(garden)) {
-        message.innerHTML = "Press ENTER to go to inside the garden..";
-
         let tempMap = document.getElementById("gardenMap");
         goinside(tempMap, garden);
     }
     else if (check(johnhome)) {
-        message.innerHTML = "Press ENTER to go to inside the johnhome..";
-
         let tempMap = document.getElementById("johnhomeMap");
         goinside(tempMap, johnhome);
     }
     else if (check(theater)) {
-        message.innerHTML = "Press ENTER to go to inside the theater..";
-
         let tempMap = document.getElementById("theaterMap");
         goinside(tempMap, theater);
     }
-    else {
-        message.innerHTML = "";
-    }
 }
 
-function goinside(placeMap, place) {
+function goinside(placeMap) {
+    map.style.display = "none";
+    placeMap.style.display = "block";
+    placeMap.style.top = "0%";
+    placeMap.style.left = "0%";
+    placeMap.style.transform = "scale(1)";
+
+    mapUpdate(placeMap);
+    message.innerHTML = "Press ENTER to exit..";
 
     addEventListener("keypress", e => {
-        if (e.code == "Enter" && check(place)) {
-            map.style.display = "none";
-            placeMap.style.display = "block";
-
-            mapUpdate(placeMap);
-            message.innerHTML = "Press ENTER to exit..";
-
-
-            addEventListener("keypress", e => {
-                if (e.code == "Enter") {
-                    placeMap.style.display = "none";
-                    map.style.display = "block";
-                    message.innerHTML = "";
-                }
-            })
+        if (e.code == "Enter") {
+            placeMap.style.display = "none";
+            map.style.display = "block";
+            message.innerHTML = "";
+            map.style.top = "0%";
+            map.style.left = "0%";
+            player.style.top = "0%";
+            player.style.left = "20%";
         }
     })
 }
-

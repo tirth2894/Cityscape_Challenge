@@ -1,3 +1,15 @@
+let frontpage = document.getElementById("frontContainer");
+let playbtn = document.getElementById("play");
+let settingbtn = document.getElementById("setting");
+let aboutbtn = document.getElementById("about");
+
+let settingpage = document.getElementById("settingContainer");
+let onsound = document.getElementById("onsoundimage");
+let offsound = document.getElementById("offsoundimage");
+let closeSetting = document.getElementById("closeimage");
+let aboutPage = document.getElementById("aboutContainer");
+let closeAbout = document.getElementById("closeAboutImage");
+
 let playArea = document.getElementById("container");
 let player = document.getElementById("player");
 let object1 = document.getElementById("object1");
@@ -6,107 +18,181 @@ let object3 = document.getElementById("object3");
 let object4 = document.getElementById("object4");
 let score = document.getElementById("score");
 let msg = document.getElementById("msg");
+let highScoreMsg = document.getElementById("highscore");
+let restartIcon = document.getElementById("restartIcon");
+let homeIcon = document.getElementById("homeIcon");
+
 
 let out = false;
 let sc = 0;
 let originaltop = parseInt(getComputedStyle(player).top);
 let outSound = new Audio('component/out.mp3');
 let jumpSound = new Audio('component/jump.mp3');
+let sound = true;
+let highScore = localStorage.getItem("BouncingBallHighScore");
+let msgContainer = document.getElementById("msgContainer");
+
+if(highScore == null){
+    highScore = 0;
+}
+
+//for disable sound
+offsound.onclick = function () {
+    sound = false;
+    onsound.style.border = "none";
+    offsound.style.border = "2px solid black"
+}
+
+//for enable sound
+onsound.onclick = function () {
+    sound = true;
+    offsound.style.border = "none";
+    onsound.style.border = "2px solid black";
+}
+
+//for open settings
+settingbtn.onclick = function () {
+    frontpage.style.display = "none";
+    settingpage.style.display = "block";
+}
+
+//for close settings
+closeSetting.onclick = function () {
+    settingpage.style.display = "none";
+    frontpage.style.display = "flex";
+}
+
+//for open about
+aboutbtn.onclick = function(){
+    frontpage.style.display = "none";
+    aboutPage.style.display = "block";
+    let hgscore = document.getElementById("hgscore");
+    hgscore.innerHTML = "Your High Score : " + highScore;
+}
+
+//for close about
+closeAbout.onclick = function(){
+    aboutPage.style.display = "none";
+    frontpage.style.display = "flex";
+}
+
+restartIcon.onclick = function(){
+    scoreContainer.style.display = "none";
+    playArea.style.display = "block";
+    main();
+}
+
+homeIcon.onclick = function(){
+    scoreContainer.style.display = "none";
+    frontpage.style.display = "flex";
+}
+
+//for play game
+playbtn.onclick = function () {
+    frontpage.style.display = "none";
+    playArea.style.display = "block";
+    sc = 0;
 
 
-//Ball Jumping
-window.addEventListener("keydown", function fun() {
+    //Ball Jumping
+    window.addEventListener("keydown", function fun() {
+        let objects = this.document.getElementsByClassName("object");
+        for (let i = 0; i < objects.length; i++) {
+            objects[i].classList.add("ani");
+            player.classList.remove("out");
+        }
 
-    let objects = this.document.getElementsByClassName("object");
-    for (let i = 0; i < objects.length; i++) {
-        objects[i].classList.add("ani");
-        player.classList.remove("out");
+        if (sound) {
+            outSound.load();
+            jumpSound.play();
+        }
 
-    }
+        player.style.top = "-45%";
+        setTimeout(() => {
+            player.style.height = "25px";
+            player.style.top = "0%";
+            player.style.boxShadow = "0px 0px 15px black";
+
+            setTimeout(() => {
+                player.style.height = "30px";
+                player.style.boxShadow = "0px 0px 0px black";
+            }, 200);
+
+        }, 600);
+    })
+
+    window.addEventListener("click", function fun() {
+
+        let objects = this.document.getElementsByClassName("object");
+        for (let i = 0; i < objects.length; i++) {
+            objects[i].classList.add("ani");
+            player.classList.remove("out");
+        }
+
+        if (sound) {
+            outSound.load();
+            jumpSound.play();
+        }
+
+        player.style.top = "-45%";
+        setTimeout(() => {
+            player.style.height = "25px";
+            player.style.top = "0%";
+            player.style.boxShadow = "0px 0px 15px black";
+
+            setTimeout(() => {
+                player.style.height = "30px";
+                player.style.boxShadow = "0px 0px 0px black";
+            }, 200);
+
+        }, 600);
+    })
+
+    main();
+}
+
+function main(){
+
+    let scoreContainer = document.getElementById("scoreContainer");
+    let scoreContainerHighScore = document.getElementById("scoreContainerHighScore");
+    let scoreContainerScore = document.getElementById("scoreContainerScore");
     
-    if (out == true) {
-        sc = 0;
-        out = false;
-        score.innerHTML = "Score : 0";
-    }
 
-    outSound.load();
-    jumpSound.play();
-    player.style.top = "-45%";
-    setTimeout(() => {
-        player.style.height = "5%";
-        player.style.top = "0%";
-        player.style.boxShadow = "0px 0px 15px black";
+    let objectCheck = setInterval(() => {
+        // Checking each object
+        if (out == false) {
+            check(object1);
+            check(object2);
+            check(object3);
+            check(object4);
+            msg.innerHTML = "";
+            highScoreMsg.innerHTML = "High Score : " + highScore;
+        }
+        else {
+            if (highScore < sc || highScore == null) {
+                localStorage.setItem("BouncingBallHighScore", sc);
+                highScore = sc;
+            }
 
-        setTimeout(() => {
-            player.style.height = "7%";
-            player.style.boxShadow = "0px 0px 0px black";
-        }, 200);
+            object1.classList.remove("ani");
+            object2.classList.remove("ani");
+            object3.classList.remove("ani");
+            object4.classList.remove("ani");
 
-    }, 450);
-})
+            player.classList.remove("out");
+            player.classList.add("out");
 
-window.addEventListener("click", function fun() {
+            clearInterval(objectCheck);
+            playArea.style.display = "none";
+            scoreContainer.style.display = "block";
+            scoreContainerHighScore.innerHTML = "High Score : " + highScore;
+            scoreContainerScore.innerHTML = "Score : " + sc;
 
-    let objects = this.document.getElementsByClassName("object");
-    for (let i = 0; i < objects.length; i++) {
-        objects[i].classList.add("ani");
-    }
-
-    if (out == true) {
-        sc = 0;
-        out = false;
-        score.innerHTML = "Score : 0";
-    }
-
-    outSound.load();
-    jumpSound.play();
-    player.style.top = "-45%";
-    setTimeout(() => {
-        player.style.height = "5%";
-        player.style.top = "0%";
-        player.style.boxShadow = "0px 0px 15px black";
-
-        setTimeout(() => {
-            player.style.height = "7%";
-            player.style.boxShadow = "0px 0px 0px black";
-        }, 200);
-
-    }, 450);
-})
-
-
-setInterval(() => {
-
-    if (window.innerWidth < 600) {
-        playArea.style.display = "none";
-        score.style.display = "none";
-        msg.innerHTML = "Rotate your device for better Experince.";
-        msg.style.fontSize = "40px";
-    }
-    else {
-        playArea.style.display = "block";
-        msg.innerHTML = "";
-    }
-
-    // Checking each object
-    if (out == false) {
-        check(object1);
-        check(object2);
-        check(object3);
-        check(object4);
-    }
-    else {
-        score.innerHTML = "";
-        msg.innerHTML = "Game Over <br>Your score is : " + sc + "<br>Click or Press Any key to play";
-        object1.classList.remove("ani");
-        object2.classList.remove("ani");
-        object3.classList.remove("ani");
-        object4.classList.remove("ani");
-
-        player.classList.add("out");
-    }
-}, 100);
+            sc = 0;
+            out = false;
+        }
+    }, 100);
+}
 
 
 // Function check the ball is overlap or not
@@ -121,12 +207,14 @@ function check(obj) {
 
 
     if (oleft < (pleft + pwidth) && oleft > pleft && (originaltop - ptop) < oheight) {
-        
-        outSound.play();
+
+        if (sound) {
+            outSound.play();
+        }
         out = true;
     }
-    else if (oleft <= (pleft - pwidth)) {
-        sc += 10;
-        score.innerHTML = "Score : " + sc;
+    else {
+        sc += 1;
+        score.innerHTML = "Your Score : " + sc;
     }
 }

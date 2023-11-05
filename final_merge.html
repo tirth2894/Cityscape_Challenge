@@ -7,6 +7,8 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="final_merge.css">
+    <link rel="stylesheet" href="room.css">
+    <link rel="stylesheet" href="johnHome.css">
 </head>
 
 <body>
@@ -15,11 +17,11 @@
     <div class="navbar">
         <p id="msg"></p>
     </div>
-    
+
     <!-- Camera -->
     <div class="camera" id="camera">
-        
-        <!-- Loading page --> 
+
+        <!-- Loading page -->
         <div class="loading" id="loading">
             <img src="image/logo_final.png" alt="">
             <div class="box"></div>
@@ -27,7 +29,8 @@
 
         <!-- player -->
         <div class="player" id="player">
-            <img src="image/sprite_stand.png" id="character">
+            <!-- <img src="image/sprite_stand.png" id="character"> -->
+            <div id="character"></div>
         </div>
 
         <!-- Map -->
@@ -90,6 +93,7 @@
                 <img src="image\theatre_one.png" title="Theatre">
             </div>
 
+            <!-- Cars -->
             <div class="car" id="car1">
                 <img src="image/car1.png" title="car">
             </div>
@@ -117,7 +121,7 @@
         <!-- Fire Station Map -->
         <div id="firestationMap" class="insideMap">
             You are in fire_station
-            
+
         </div>
 
         <!-- Govt Office Map -->
@@ -133,16 +137,16 @@
         <!-- Hospital Map -->
         <div id="hospitalMap" class="insideMap">
             You are in hospital
-            
+
         </div>
 
         <!-- Game-Zone Map -->
         <div id="gamezoneMap" class="insideMap">
             You are in gamezone
         </div>
-        
+
         <!-- School Map -->
-        <div id="schoolMap"  class="insideMap">
+        <div id="schoolMap" class="insideMap">
             You are in school
         </div>
 
@@ -152,9 +156,59 @@
         </div>
 
         <!-- Home Map -->
-        <div id="homeMap" class="insideMap">
-            You are in home
+        <div id="homeMap" class="homeInsideMap">
+            <img src="image/homeKitchenWall1.png" id="homeKitchenWall1" class="homePosition homeObject">
+            <img src="image/homeKitchenWall3.png" id="homeKitchenWall3" class="homePosition homeObject">
+            <img src="image/homeKitchenWall4.png" id="homeKitchenWall4" class="homePosition homeObject">
+            <img src="image/homeKitchenWall2.png" id="homeKitchenWall2" class="homePosition homeObject">
+            <img src="image/homeBedroomWall1.png" id="homeBedroomWall1" class="homePosition homeObject">
+            <img src="image/homeBedroomWall2.png" id="homeBedroomWall2" class="homePosition homeObject">
+            <img src="image/homeBedroomWall5.png" id="homeBedroomWall5" class="homePosition homeObject">
+            <img src="image/homeBedroomWall4.png" id="homeBedroomWall4" class="homePosition homeObject">
+            <img src="image/homeBedroomWall3.png" id="homeBedroomWall3" class="homePosition homeObject">
+            <img src="image/homeRestroomWall1.png" id="homeRestroomWall1" class="homePosition homeObject">
+            <img src="image/homeShoePlaceWall.png" id="homeShoePlaceWall" class="homePosition homeObject">
+            <img src="image/homeBed.png" id="homeBed" class="homePosition homeObject">
+            <img src="image/homeSofaHorizontal.png" id="homeSofaHorizontal" class="homePosition homeObject">
+            <img src="image/homeSofaVertical.png" id="homeSofaVertical" class="homePosition homeObject">
+            <img src="image/homeDiningTable.png" id="homeDiningTable" class="homePosition homeObject">
+            <img src="image/homeWashRoom.png" id="homeWashRoom" class="homePosition homeObject">
+            <img src="image/homeBathtub.jpeg" id="homeBathtub" class="homePosition homeObject">
+            <img src="image/homeWashBasin.jpeg" id="homeWashBasin" class="homePosition homeObject">
+            <img src="image/homeKitchenHorizontal.png" id="homeKitchenHorizontal"
+                class="homePosition homeObject homeObject">
+            <img src="image/homeKitchenVertical.png" id="homeKitchenVertical" class="homePosition homeObject">
+            <img src="image/homeTv.png" id="homeTv" class="homePosition homeObject">
+            <img src="image/homeStrawberry.png" id="homeStrawberry" class="homePosition homeObject">
+            <img src="image/homeKitchenCupboard.png" id="homeKitchenCupboard" class="homePosition homeObject">
+            <img src="image/homeTepoy.png" id="homeTepoy" class="homePosition homeObject">
+            <img src="image/homeSpect.png" id="homeSpect" class="homePosition homeObject">
+            <img src="image/homeCup.png" id="homeCup" class="homePosition homeObject">
+            <img src="image/homeCup.png" id="homeCup1" class="homePosition homeObject">
+            <img src="image/homeCup.png" id="homeCup2" class="homePosition homeObject">
+            <img src="image/homeCup.png" id="homeCup3" class="homePosition homeObject">
+            <img src="image/homeBookShelf.png" id="homeBookShelf" class="homePosition homeObject">
+            <img src="image/homeStudyTable.png" id="homeStudyTable" class="homePosition homeObject">
+            <img src="image/homeShoes.png" id="homeShoes" class="homePosition homeObject">
+            <img src="image/homeSkinBook.png" id="homeSkinBook" class="homePosition homeObject">
+            <img src="image/homeBedroomTable.png" id="homeBedroomTable" class="homePosition homeObject">
+            <img src="image/homePinkChair.png" id="homePinkChair1" class="homePosition homeObject">
+            <img src="image/homePinkChair.png" id="homePinkChair2" class="homePosition homeObject">
+            <img src="image/homeBedroomCupboard.png" id="homeBedroomCupboard" class="homePosition homeObject">
+            <img src="image/vas.png" id="homeBedRoomVas" class="homePosition homeObject">
+            <img src="image/homeGreenPlant.png" id="homeGreenPlant" class="homePosition homeObject">
+            <img src="image/homeLivingRoomCabinet.png" id="homeLivingRoomCabinet" class="homePosition homeObject">
+            <img src="image/homeBlueChair.png" id="homeBlueChair" class="homePosition homeObject">
+            <img src="image/blackline horizontal.png" id="blackline_h1" class="homePosition hide homeObject">
+            <img src="image/blackline horizontal.png" id="blackline_h2" class="homePosition hide homeObject">
+            <img src="image/blackline vertical.png" id="blackline_v1" class="homePosition hide homeObject">
+            <img src="image/blackline vertical.png" id="blackline_v2" class="homePosition hide homeObject">
+
+            <img src="image/homeBrownDoormat.png" id="homeBrownDoormat" class="homePosition">
+            <img src="image/homeLivingRoomCarpet.jpg" id="homeLivingRoomCarpet" class="homePosition">
+            <img src="image/homeBlueDoormat.png" id="homeBlueDoormat" class="homePosition">
         </div>
+
 
         <!-- Bank Map -->
         <div id="bankMap" class="insideMap">
@@ -172,8 +226,52 @@
         </div>
 
         <!-- John Home Map -->
-        <div id="johnhomeMap" class="insideMap">
-            You are in johnhome
+        <div id="johnhomeMap" class="johnHomeInsideMap">
+            <img src="image/johnHomeSofaVertical.png" id="johnHomeSofaVertical" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeSofaHorizontal.png" id="johnHomeSofaHorizontal" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeTv.png" id="johnHomeTv" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomePinkFlower.png" id="johnHomePinkFlower" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeFlower.png" id="johnHomeFlower1" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeFlower.png" id="johnHomeFlower2" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBlueSofa.png" id="johnHomeBlueSofa" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBlueChair.png" id="johnHomeBlueChair" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeChair1.png" id="johnHomeChair1" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeChair2.png" id="johnHomeChair2" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBed.png" id="johnHomeBed" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeWashBasin.jpeg" id="johnHomeWashBasin" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBedroomCupboard.png" id="johnHomeBedroomCupboard" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeToilet.png" id="johnHomeToilet" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBathtub.jpeg" id="johnHomeBathtub" class="johnHomePosition johnHomeObject">
+            <img src="image/JohnHomeBalconyTepoy.png" id="JohnHomeBalconyTepoy" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeDiningTable.png" id="johnHomeDiningTable" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomePendrive.png" id="johnHomePendrive" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeKitchenHorizontal.png" id="johnHomeKitchenHorizontal" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeKitchenVertical.png" id="johnHomeKitchenVertical" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeGasStand.png" id="johnHomeGasStand" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeGas.png" id="johnHomeGas" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeLamp.png" id="johnHomeLamp" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBalconyFlower.png" id="johnHomeBalconyFlower" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeKitchenDrawer.png" id="johnHomeKitchenDrawer" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeSwing.png" id="johnHomeSwing" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBalconyTable1.png" id="johnHomeBalconyTable1" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeStudyTable.png" id="johnHomeStudyTable" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeStudyChair.png" id="johnHomeStudyChair" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBedroomWall2.png" id="johnHomeBedroomWall2" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeWashroomWall1.png" id="johnHomeWashroomWall1" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeWashroomWall2.png" id="johnHomeWashroomWall2" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeWashroomWall3.png" id="johnHomeWashroomWall3" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBalconyWall.png" id="johnHomeBalconyWall" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeKitchenWall2.png" id="johnHomeKitchenWall2" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeKitchenWall1.png" id="johnHomeKitchenWall1" class="johnHomePosition johnHomeObject">
+            <img src="image/johnHomeBlackline horizontal.png" id="johnHomeBlackline_h1" class="johnHomePosition v johnHomeObject">
+            <img src="image/johnHomeBlackline horizontal.png" id="johnHomeBlackline_h2" class="johnHomePosition v johnHomeObject">
+            <img src="image/johnHomeBlackline vertical.png" id="johnHomeBlackline_v1" class="johnHomePosition v johnHomeObject">
+            <img src="image/johnHomeBlackline vertical.png" id="johnHomeBlackline_v2" class="johnHomePosition v johnHomeObject">
+
+
+            <img src="image/johnHomeCarpet.png" id="johnHomeCarpet" class="johnHomePosition">
+            <img src="image/johnHomeDoormat.jpg" id="johnHomeDoormat" class="johnHomePosition">
+
         </div>
 
         <!-- Theater Map -->

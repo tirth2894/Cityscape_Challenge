@@ -11,6 +11,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 
@@ -68,8 +69,8 @@ body{
 
 /* MAP */
 .map{
-    height: 200%;
-    width: 200%;
+    height: 325%;
+    width: 325%;
     background-color: rgb(58, 57, 57);
     position: relative;
 }
@@ -89,10 +90,10 @@ body{
     width: calc(8% / 2);
     height: 8%;
     top: 0%;
-    left: 20%;
+    left: 35%;
+    background-color: rgb(61, 165, 165);
     z-index: 1;
     overflow: hidden;
-    transition: transform .5s;
     display: none;
 }
 
@@ -285,7 +286,7 @@ body{
 
 .car{
     position: absolute;
-    height: 10%;
+    height: 7%;
 }
 
 .car > img {
@@ -294,20 +295,17 @@ body{
 }
 
 #car1{
-    left: 34%;
     animation: car1 12s infinite linear;
 }
 
 #car2{
-    top: 100%;
-    left: 81%;
     transform: rotate(180deg);
     animation: car2 12s infinite linear;
 }
 
 #car3{
     top: 53%;
-    left: 110%;
+    left: 100%;
     transform: rotate(90deg);
     animation: car3 12s 2s infinite linear;
 }
@@ -315,53 +313,53 @@ body{
 @keyframes car1 {
     0%{
         top: -2%;
-        left: 34%;
+        left: 33.5%;
         transform: rotate(0deg);
     }
 
     20%{
-        top: 23.5%;
-        left: 34%;
+        top: 22%;
+        left: 33.5%;
         transform: rotate(0deg);
     }
     23%{
-        top: 23.5%;
-        left: 34%;
+        top: 24%;
+        left: 33.5%;
         transform: rotate(90deg);
     }
     40%{
-        top: 23.5%;
-        left: 21%;
+        top: 24%;
+        left: 20.5%;
         transform: rotate(90deg);
     }
     43%{
-        top: 23.5%;
-        left: 21%;
+        top: 26%;
+        left: 20.5%;
         transform: rotate(0deg);
     }
     60%{
-        top: 65%;
-        left: 21%;
+        top: 66%;
+        left: 20.5%;
         transform: rotate(0deg);
     }
     63%{
-        top: 65%;
-        left: 21%;
+        top: 68.5%;
+        left: 20.5%;
         transform: rotate(-90deg);
     }
     80%{
-        top: 65%;
-        left: 41%;
+        top: 68.5%;
+        left: 40.5%;
         transform: rotate(-90deg);
     }
     83%{
-        top: 65%;
-        left: 41%;
+        top: 70%;
+        left: 40.5%;
         transform: rotate(0deg);
     }
     100%{
         top: 100%;
-        left: 41%;
+        left: 40.5%;
         transform: rotate(0deg);
     }
 }
@@ -374,37 +372,37 @@ body{
         transform: rotate(180deg);    
     }
     20%{
-        top: 65%;
+        top: 68%;
         left: 81%;
         transform: rotate(180deg);
     }
     23%{
-        top: 65%;
+        top: 68%;
         left: 81%;
         transform: rotate(90deg);
     }
     40%{
-        top: 65%;
-        left: 51%;
+        top: 68%;
+        left: 50.7%;
         transform: rotate(90deg);
     }
     43%{
-        top: 65%;
-        left: 51%;
+        top: 66%;
+        left: 50.7%;
         transform: rotate(180deg);
     }
     60%{
-        top: 25%;
-        left: 51%;
+        top: 28%;
+        left: 50.7%;
         transform: rotate(180deg);
     }
     63%{
-        top: 25%;
-        left: 51%;
+        top: 28%;
+        left: 50.7%;
         transform: rotate(90deg);
     }
     100%{
-        top: 25%;
+        top: 28%;
         left: -10%;
         transform: rotate(90deg);
     }
@@ -418,46 +416,46 @@ body{
     }
     20%{
         top: 53%;
-        left: 76%;
+        left: 77.7%;
         transform: rotate(90deg);
     }
     23%{
         top: 53%;
-        left: 76%;
+        left: 77.7%;
         transform: rotate(180deg);
     }
     40%{
-        top: 26%;
-        left: 76%;
+        top: 27%;
+        left: 77.7%;
         transform: rotate(180deg);
     }
     43%{
-        top: 26%;
-        left: 76%;
+        top: 27%;
+        left: 77.7%;
         transform: rotate(90deg);
     }
     60%{   
-        top: 26%;
-        left: 51%;
+        top: 27%;
+        left: 50.5%;
         transform: rotate(90deg);
     }
     63%{
-        top: 26%;
-        left: 51%;
+        top: 28%;
+        left: 50.5%;
         transform: rotate(0deg);
     }
     80%{
-        top: 65%;
-        left: 51%;
+        top: 63%;
+        left: 50.5%;
         transform: rotate(0deg);        
     }
     83%{
-        top: 65%;
-        left: 51%;
+        top: 64.5%;
+        left: 50.5%;
         transform: rotate(90deg);        
     }
     100%{
-        top: 65%;
+        top: 64.5%;
         left: 0%;
         transform: rotate(90deg);        
     }
@@ -468,7 +466,6 @@ body{
     height: 200%;
     width: 190%;
     background-color: green;
-    border: 3px solid red;
     display: none;
     color: white;
     font-size: 230px;

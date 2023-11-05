@@ -22,26 +22,27 @@ let theater = document.getElementById("theater");
 
 let message = document.getElementById("msg");
 
+let mapUpdateEvent;
+let objects;
+
 const speed = 5;
 
 setTimeout(() => {
     load.style.display = "none";
     player.style.display = "block";
 
-    mapUpdate(map);
+    mapUpdate(map, objects);
     playerupdate();
 }, 3500);
 
 
-function mapUpdate(placeMap) {
-    let camera_width = parseInt(getComputedStyle(camera).width);
-    let camera_height = parseInt(getComputedStyle(camera).height);
-    let map_width = parseInt(getComputedStyle(placeMap).width);
-    let map_height = parseInt(getComputedStyle(placeMap).height);
-    let pos;
-
-
-    addEventListener('keydown', e => {
+function mapUpdate(placeMap, objects) {
+    addEventListener('keydown', mapUpdateEvent = e => {
+        let camera_width = parseInt(getComputedStyle(camera).width);
+        let camera_height = parseInt(getComputedStyle(camera).height);
+        let map_width = parseInt(getComputedStyle(placeMap).width);
+        let map_height = parseInt(getComputedStyle(placeMap).height);
+        let pos;
 
         switch (e.key) {
             case 'w':
@@ -51,41 +52,85 @@ function mapUpdate(placeMap) {
 
                 if (pos < 0) {
                     placeMap.style.top = pos + speed + "px";
+                    if (objectOverlap(objects)) {
+                        pos = player.getBoundingClientRect().top;
+                        player.style.top = pos + speed+ "px";
+                    }
                 }
+
                 break;
 
 
             case 's':
             case 'ArrowDown':
+
                 pos = parseInt(getComputedStyle(placeMap).top);
 
                 if (Math.abs(pos) < (map_height - camera_height)) {
                     placeMap.style.top = pos - speed + "px";
+                    if (objectOverlap(objects)) {
+                        pos = player.getBoundingClientRect().top;
+                        player.style.top = pos - speed + "px";
+                    }
                 }
+
+
                 break;
 
 
             case 'a':
             case 'ArrowLeft':
+
                 pos = parseInt(getComputedStyle(placeMap).left);
 
                 if (pos < 0) {
                     placeMap.style.left = pos + speed + "px";
+                    if (objectOverlap(objects)) {
+                        pos = player.getBoundingClientRect().left;
+                        player.style.left = pos + speed + "px";
+                    }
                 }
+
                 break;
 
 
             case 'd':
             case 'ArrowRight':
+
                 pos = parseInt(getComputedStyle(placeMap).left);
 
                 if (Math.abs(pos) < (map_width - camera_width)) {
                     placeMap.style.left = pos - speed + "px";
+                    if (objectOverlap(objects)) {
+                        pos = player.getBoundingClientRect().left;
+                        player.style.left = pos - speed + "px";
+                    }
                 }
+
                 break;
         }
+
     });
+
 }
+
+
+function objectOverlap(objects) {
+    if (objects == undefined) {
+        return false;
+    }
+    else {
+
+        for (let i = 0; i < objects.length; i++) {
+            if (check(objects[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
+
 
 function playerupdate() {
 
@@ -105,61 +150,60 @@ function playerupdate() {
         }
 
 
-        switch (e.key) {
-            case 'w':
-            case 'ArrowUp':
+        if (!objectOverlap(objects) || objects == undefined) {
 
-                pos = parseInt(getComputedStyle(player).top);
+            switch (e.key) {
+                case 'w':
+                case 'ArrowUp':
 
-                if (pos > 0) {
-                    player.style.top = pos - speed + "px";
-                    overlap();
+                    pos = parseInt(getComputedStyle(player).top);
 
-                    character.style.transform = "rotate(0deg)";
-                }
-                break;
+                    if (pos > 0) {
+                        player.style.top = pos - speed + "px";
+                        overlap();
 
-
-            case 's':
-            case 'ArrowDown':
-
-                pos = parseInt(getComputedStyle(player).top);
-
-                if (pos < Math.abs(player_height - camera_height)) {
-                    player.style.top = pos + speed + "px";
-
-                    overlap();
-                    character.style.transform = "rotate(180deg)";
-                }
-                break;
+                    }
+                    break;
 
 
-            case 'a':
-            case 'ArrowLeft':
+                case 's':
+                case 'ArrowDown':
 
-                pos = parseInt(getComputedStyle(player).left);
+                    pos = parseInt(getComputedStyle(player).top);
 
-                if (pos > 0) {
-                    player.style.left = pos - speed + "px";
-                    overlap();
+                    if (pos < Math.abs(player_height - camera_height)) {
+                        player.style.top = pos + speed + "px";
 
-                    character.style.transform = "rotate(270deg)";
-                }
-                break;
+                        overlap();
+                    }
+                    break;
 
 
-            case 'd':
-            case 'ArrowRight':
+                case 'a':
+                case 'ArrowLeft':
 
-                pos = parseInt(getComputedStyle(player).left);
+                    pos = parseInt(getComputedStyle(player).left);
 
-                if (pos < Math.abs(player_width - camera_width)) {
-                    player.style.left = pos + speed + "px";
-                    overlap();
+                    if (pos > 0) {
+                        player.style.left = pos - speed + "px";
+                        overlap();
 
-                    character.style.transform = "rotate(90deg)";
-                }
-                break;
+                    }
+                    break;
+
+
+                case 'd':
+                case 'ArrowRight':
+
+                    pos = parseInt(getComputedStyle(player).left);
+
+                    if (pos < Math.abs(player_width - camera_width)) {
+                        player.style.left = pos + speed + "px";
+                        overlap();
+
+                    }
+                    break;
+            }
         }
     });
 
@@ -178,20 +222,7 @@ function check(item) {
     let itemPosition = item.getBoundingClientRect();
     let playerPosition = player.getBoundingClientRect();
 
-    let player_top = playerPosition.top;
-    let player_left = playerPosition.left;
-    let player_right = playerPosition.right;
-    let player_bottom = playerPosition.bottom;
-
-    let item_width = itemPosition.width;
-    let item_height = itemPosition.height;
-
-    let item_top = itemPosition.top;
-    let item_left = itemPosition.left;
-    let item_right = itemPosition.right;
-    let item_bottom = itemPosition.bottom;
-
-    if (player_top >= item_top && player_bottom <= item_bottom && player_left >= item_left && player_right <= item_right) {
+    if (playerPosition.right > itemPosition.left && playerPosition.left < itemPosition.right && playerPosition.bottom > itemPosition.top && playerPosition.top < itemPosition.bottom) {
         return true;
     }
     else {
@@ -203,74 +234,77 @@ function overlap() {
 
     if (check(elisahome)) {
         let tempMap = document.getElementById("elisahomeMap");
-        goinside(tempMap, elisahome);
+        goinside(tempMap);
     }
     else if (check(policestation)) {
         let tempMap = document.getElementById("policestationMap");
-        goinside(tempMap, policestation);
+        goinside(tempMap);
     }
     else if (check(firestation)) {
         let tempMap = document.getElementById("firestationMap");
-        goinside(tempMap, firestation);
+        goinside(tempMap);
     }
     else if (check(govtoffice)) {
         let tempMap = document.getElementById("govtofficeMap");
-        goinside(tempMap, govtoffice);
+        goinside(tempMap);
     }
     else if (check(mall)) {
         let tempMap = document.getElementById("mallMap");
-        goinside(tempMap, mall);
+        goinside(tempMap);
     }
     else if (check(hospital)) {
         let tempMap = document.getElementById("hospitalMap");
-        goinside(tempMap, hospital);
+        goinside(tempMap);
     }
     else if (check(gamezone)) {
         let tempMap = document.getElementById("gamezoneMap");
-        goinside(tempMap, gamezone);
+        goinside(tempMap);
     }
     else if (check(school)) {
         let tempMap = document.getElementById("schoolMap");
-        goinside(tempMap, school);
+        goinside(tempMap);
     }
     else if (check(postoffice)) {
         let tempMap = document.getElementById("postofficeMap");
-        goinside(tempMap, postoffice);
+        goinside(tempMap);
     }
     else if (check(home)) {
         let tempMap = document.getElementById("homeMap");
-        goinside(tempMap, home);
+        objects = document.getElementsByClassName("homeObject");
+        goinside(tempMap, objects);
     }
     else if (check(bank)) {
         let tempMap = document.getElementById("bankMap");
-        goinside(tempMap, bank);
+        goinside(tempMap);
     }
     else if (check(hotel)) {
         let tempMap = document.getElementById("hotelMap");
-        goinside(tempMap, hotel);
+        goinside(tempMap);
     }
     else if (check(garden)) {
         let tempMap = document.getElementById("gardenMap");
-        goinside(tempMap, garden);
+        goinside(tempMap);
     }
     else if (check(johnhome)) {
         let tempMap = document.getElementById("johnhomeMap");
-        goinside(tempMap, johnhome);
+        objects = document.getElementsByClassName("johnHomeObject");
+        goinside(tempMap,objects);
     }
     else if (check(theater)) {
         let tempMap = document.getElementById("theaterMap");
-        goinside(tempMap, theater);
+        goinside(tempMap);
     }
 }
 
-function goinside(placeMap) {
+function goinside(placeMap, objects) {
     map.style.display = "none";
     placeMap.style.display = "block";
     placeMap.style.top = "0%";
     placeMap.style.left = "0%";
     placeMap.style.transform = "scale(1)";
 
-    mapUpdate(placeMap);
+    mapUpdate(placeMap, objects);
+
     message.innerHTML = "Press ENTER to exit..";
 
     addEventListener("keypress", e => {
@@ -281,7 +315,8 @@ function goinside(placeMap) {
             map.style.top = "0%";
             map.style.left = "0%";
             player.style.top = "0%";
-            player.style.left = "20%";
+            player.style.left = "35%";
+            removeEventListener('keydown', mapUpdateEvent);
         }
     })
 }

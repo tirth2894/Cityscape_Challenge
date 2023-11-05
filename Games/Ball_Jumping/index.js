@@ -79,12 +79,41 @@ closeAbout.onclick = function(){
 restartIcon.onclick = function(){
     scoreContainer.style.display = "none";
     playArea.style.display = "block";
+    
+    window.addEventListener("keyup", fun);
+    window.addEventListener("click", fun);
     main();
 }
 
 homeIcon.onclick = function(){
     scoreContainer.style.display = "none";
     frontpage.style.display = "flex";
+}
+
+function fun() {
+    let objects = this.document.getElementsByClassName("object");
+    for (let i = 0; i < objects.length; i++) {
+        objects[i].classList.add("ani");
+        player.classList.remove("out");
+    }
+
+    if (sound) {
+        outSound.load();
+        jumpSound.play();
+    }
+
+    player.style.top = "-45%";
+    setTimeout(() => {
+        player.style.height = "25px";
+        player.style.top = "0%";
+        player.style.boxShadow = "0px 0px 15px black";
+
+        setTimeout(() => {
+            player.style.height = "30px";
+            player.style.boxShadow = "0px 0px 0px black";
+        }, 200);
+
+    }, 600);
 }
 
 //for play game
@@ -95,58 +124,8 @@ playbtn.onclick = function () {
 
 
     //Ball Jumping
-    window.addEventListener("keydown", function fun() {
-        let objects = this.document.getElementsByClassName("object");
-        for (let i = 0; i < objects.length; i++) {
-            objects[i].classList.add("ani");
-            player.classList.remove("out");
-        }
-
-        if (sound) {
-            outSound.load();
-            jumpSound.play();
-        }
-
-        player.style.top = "-45%";
-        setTimeout(() => {
-            player.style.height = "25px";
-            player.style.top = "0%";
-            player.style.boxShadow = "0px 0px 15px black";
-
-            setTimeout(() => {
-                player.style.height = "30px";
-                player.style.boxShadow = "0px 0px 0px black";
-            }, 200);
-
-        }, 600);
-    })
-
-    window.addEventListener("click", function fun() {
-
-        let objects = this.document.getElementsByClassName("object");
-        for (let i = 0; i < objects.length; i++) {
-            objects[i].classList.add("ani");
-            player.classList.remove("out");
-        }
-
-        if (sound) {
-            outSound.load();
-            jumpSound.play();
-        }
-
-        player.style.top = "-45%";
-        setTimeout(() => {
-            player.style.height = "25px";
-            player.style.top = "0%";
-            player.style.boxShadow = "0px 0px 15px black";
-
-            setTimeout(() => {
-                player.style.height = "30px";
-                player.style.boxShadow = "0px 0px 0px black";
-            }, 200);
-
-        }, 600);
-    })
+    window.addEventListener("keyup", fun);
+    window.addEventListener("click", fun);
 
     main();
 }
@@ -160,7 +139,7 @@ function main(){
 
     let objectCheck = setInterval(() => {
         // Checking each object
-        if (out == false) {
+        if (!out) {
             check(object1);
             check(object2);
             check(object3);
@@ -190,6 +169,9 @@ function main(){
 
             sc = 0;
             out = false;
+
+            window.removeEventListener("click",fun);
+            window.removeEventListener("keyup",fun);
         }
     }, 100);
 }

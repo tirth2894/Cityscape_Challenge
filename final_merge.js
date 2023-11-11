@@ -25,15 +25,19 @@ let message = document.getElementById("msg");
 let mapUpdateEvent;
 let objects;
 
-const speed = 5;
+const speed = 10;
 
-setTimeout(() => {
+// setTimeout(() => {
+// }, 3500);
+
+window.onload = function(){
     load.style.display = "none";
     player.style.display = "block";
-
+    
     mapUpdate(map, objects);
     playerupdate();
-}, 3500);
+
+};
 
 
 function mapUpdate(placeMap, objects) {
@@ -114,7 +118,6 @@ function mapUpdate(placeMap, objects) {
 
 }
 
-
 function objectOverlap(objects) {
     if (objects == undefined) {
         return false;
@@ -130,7 +133,6 @@ function objectOverlap(objects) {
     }
 
 }
-
 
 function playerupdate() {
 
@@ -234,7 +236,8 @@ function overlap() {
 
     if (check(elisahome)) {
         let tempMap = document.getElementById("elisahomeMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("elisaHomeObject");
+        goinside(tempMap,objects);
     }
     else if (check(policestation)) {
         let tempMap = document.getElementById("policestationMap");
@@ -250,7 +253,8 @@ function overlap() {
     }
     else if (check(mall)) {
         let tempMap = document.getElementById("mallMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("mallObject");
+        goinside(tempMap,objects);
     }
     else if (check(hospital)) {
         let tempMap = document.getElementById("hospitalMap");
@@ -275,15 +279,18 @@ function overlap() {
     }
     else if (check(bank)) {
         let tempMap = document.getElementById("bankMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("bankObject");
+        goinside(tempMap,objects);
     }
     else if (check(hotel)) {
         let tempMap = document.getElementById("hotelMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("hotelObject");
+        goinside(tempMap,objects);
     }
     else if (check(garden)) {
         let tempMap = document.getElementById("gardenMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("gardenObject");
+        goinside(tempMap,objects);
     }
     else if (check(johnhome)) {
         let tempMap = document.getElementById("johnhomeMap");

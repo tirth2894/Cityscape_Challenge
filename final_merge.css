@@ -87,14 +87,14 @@ body{
 /* Player */
 .player{
     position: absolute;
-    width: calc(8% / 2);
-    height: 8%;
+    width: calc(10% / 2);
+    height: 10%;
     top: 0%;
     left: 35%;
-    background-color: rgb(61, 165, 165);
     z-index: 1;
     overflow: hidden;
     display: none;
+    border: 2px solid red;
 }
 
 .player > img {
@@ -471,3 +471,5 @@ body{
     font-size: 230px;
     position: relative;
 }
+
+

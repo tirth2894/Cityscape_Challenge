@@ -3,6 +3,7 @@
     width: 150%;
     background-image:url('image/johnHomeBaseImage.png');
     background-repeat: no-repeat;
+    display: none;
     background-size: 100% 100%;
     position: relative;
 }

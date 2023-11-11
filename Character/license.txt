@@ -1,0 +1,11 @@
+Model Information:
+* title:	Male Adventurer
+* source:	https://sketchfab.com/3d-models/male-adventurer-3f5f7d12c07445fe9b8c4958935970e2
+* author:	manoeldarochadeoliveira (https://sketchfab.com/manoeldarochadeoliveira)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Male Adventurer" (https://sketchfab.com/3d-models/male-adventurer-3f5f7d12c07445fe9b8c4958935970e2) by manoeldarochadeoliveira (https://sketchfab.com/manoeldarochadeoliveira) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -25,10 +25,7 @@ let message = document.getElementById("msg");
 let mapUpdateEvent;
 let objects;
 
-const speed = 10;
-
-// setTimeout(() => {
-// }, 3500);
+const speed = 5;
 
 window.onload = function(){
     load.style.display = "none";
@@ -305,7 +302,8 @@ function overlap() {
     }
     else if (check(theater)) {
         let tempMap = document.getElementById("theaterMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("theaterObject");
+        goinside(tempMap,objects);
     }
 }
 

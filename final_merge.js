@@ -241,15 +241,18 @@ function overlap() {
     }
     else if (check(policestation)) {
         let tempMap = document.getElementById("policestationMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("policeStationObject");
+        goinside(tempMap,objects);
     }
     else if (check(firestation)) {
         let tempMap = document.getElementById("firestationMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("fireStationObject");
+        goinside(tempMap,objects);
     }
     else if (check(govtoffice)) {
         let tempMap = document.getElementById("govtofficeMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("govOfficeObject");
+        goinside(tempMap,objects);
     }
     else if (check(mall)) {
         let tempMap = document.getElementById("mallMap");
@@ -258,7 +261,8 @@ function overlap() {
     }
     else if (check(hospital)) {
         let tempMap = document.getElementById("hospitalMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("hospitalObject");
+        goinside(tempMap,objects);
     }
     else if (check(gamezone)) {
         let tempMap = document.getElementById("gamezoneMap");
@@ -266,11 +270,13 @@ function overlap() {
     }
     else if (check(school)) {
         let tempMap = document.getElementById("schoolMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("schoolObject");
+        goinside(tempMap,objects);
     }
     else if (check(postoffice)) {
         let tempMap = document.getElementById("postofficeMap");
-        goinside(tempMap);
+        objects = document.getElementsByClassName("postOfficeObject");
+        goinside(tempMap,objects);
     }
     else if (check(home)) {
         let tempMap = document.getElementById("homeMap");

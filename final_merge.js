@@ -2,7 +2,6 @@ let load = document.getElementById("loading");
 let map = document.getElementById("map");
 let camera = document.getElementById("camera");
 let player = document.getElementById("player");
-let character = document.getElementById("player");
 let items = document.getElementsByClassName("item");
 let elisahome = document.getElementById("elisahome");
 let policestation = document.getElementById("policestation");
@@ -25,7 +24,7 @@ let message = document.getElementById("msg");
 let mapUpdateEvent;
 let objects;
 
-const speed = 5;
+const speed = 7;
 
 window.onload = function(){
     load.style.display = "none";
@@ -143,12 +142,6 @@ function playerupdate() {
 
     addEventListener('keydown', e => {
 
-        if (e.key == "w" || e.key == "a" || e.key == "s" || e.key == "d" || e.key == "ArrowUp" || e.key == "ArrowLeft" || e.key == "ArrowDown" || e.key == "ArrowRight") {
-            chara.src = "image/sprite_walk.png";
-            chara.classList.add("walk");
-        }
-
-
         if (!objectOverlap(objects) || objects == undefined) {
 
             switch (e.key) {
@@ -157,9 +150,11 @@ function playerupdate() {
 
                     pos = parseInt(getComputedStyle(player).top);
 
+                    chara.classList.add("walk");
                     if (pos > 0) {
                         player.style.top = pos - speed + "px";
                         overlap();
+                        chara.src = "image/sprite_up.png";
 
                     }
                     break;
@@ -169,6 +164,8 @@ function playerupdate() {
                 case 'ArrowDown':
 
                     pos = parseInt(getComputedStyle(player).top);
+                    chara.src = "image/sprite_down.png";
+                    chara.classList.add("walk");
 
                     if (pos < Math.abs(player_height - camera_height)) {
                         player.style.top = pos + speed + "px";
@@ -182,10 +179,12 @@ function playerupdate() {
                 case 'ArrowLeft':
 
                     pos = parseInt(getComputedStyle(player).left);
+                    chara.classList.add("walk");
 
                     if (pos > 0) {
                         player.style.left = pos - speed + "px";
                         overlap();
+                        chara.src = "image/sprite_left.png";
 
                     }
                     break;
@@ -195,10 +194,12 @@ function playerupdate() {
                 case 'ArrowRight':
 
                     pos = parseInt(getComputedStyle(player).left);
+                    chara.classList.add("walk");
 
                     if (pos < Math.abs(player_width - camera_width)) {
                         player.style.left = pos + speed + "px";
                         overlap();
+                        chara.src = "image/sprite_right.png";
 
                     }
                     break;
@@ -214,6 +215,7 @@ function playerupdate() {
         }
 
     });
+
 }
 
 function check(item) {
@@ -233,7 +235,7 @@ function overlap() {
 
     if (check(elisahome)) {
         let tempMap = document.getElementById("elisahomeMap");
-        objects = document.getElementsByClassName("elisaHomeObject");
+        objects = document.getElementsByClassName("elisaHomeObject"); 
         goinside(tempMap,objects);
     }
     else if (check(policestation)) {
@@ -308,11 +310,16 @@ function overlap() {
 }
 
 function goinside(placeMap, objects) {
+    let mapTop = map.getBoundingClientRect().top;
+    let mapLeft = map.getBoundingClientRect().left;
+    let playerTop = player.getBoundingClientRect().top;
+    let playerLeft = player.getBoundingClientRect().left;
+
+    
     map.style.display = "none";
     placeMap.style.display = "block";
     placeMap.style.top = "0%";
     placeMap.style.left = "0%";
-    placeMap.style.transform = "scale(1)";
 
     mapUpdate(placeMap, objects);
 
@@ -320,13 +327,13 @@ function goinside(placeMap, objects) {
 
     addEventListener("keypress", e => {
         if (e.code == "Enter") {
+            player.style.top = playerTop + "px";
+            player.style.left = playerLeft + "px";
+            map.style.top = mapTop + "px";
+            map.style.left = mapLeft + "px";
             placeMap.style.display = "none";
             map.style.display = "block";
             message.innerHTML = "";
-            map.style.top = "0%";
-            map.style.left = "0%";
-            player.style.top = "0%";
-            player.style.left = "35%";
             removeEventListener('keydown', mapUpdateEvent);
         }
     })

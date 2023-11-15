@@ -327,12 +327,12 @@
 }
 
 .walk {
-	animation: walk .9s infinite steps(2);
+	animation: policeStationWalk .9s infinite steps(2);
 }
 
 
 
-@keyframes walk {
+@keyframes policeStationWalk {
 	0% {
 		left: 0%;
 	}

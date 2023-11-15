@@ -521,9 +521,9 @@
 }
 
 .hospitalwalk{
-    animation: bankwalk .8s infinite steps(2);
+    animation: hospitalwalk .8s infinite steps(2);
 }
-@keyframes bankwalk {
+@keyframes hospitalwalk {
     0%{
         left: 0%;
     }

@@ -306,10 +306,10 @@
 /* ------------------------------------------------------------------- */
 }
 .gardenWalk{
-    animation: walk .9s infinite steps(2);
+    animation: gardenWalk .9s infinite steps(2);
 }
 
-@keyframes walk {
+@keyframes gardenWalk {
     0%{
         left: 0%;
     }

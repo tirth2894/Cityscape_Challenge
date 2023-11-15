@@ -584,7 +584,7 @@
     left: 30%;
     z-index: 1;
     overflow: hidden;
-    animation: man1 20s infinite linear;
+    animation: govOfficeman1 20s infinite linear;
 }
 
 #govofficeman1>img {
@@ -596,12 +596,12 @@
 }
 
 .walk {
-    animation: walk .8s infinite steps(2);
+    animation: govOfficewalk .8s infinite steps(2);
 }
 
 
 
-@keyframes walk {
+@keyframes govOfficewalk {
     0% {
         left: 0%;
     }
@@ -613,7 +613,7 @@
 
 
 
-@keyframes man1 {
+@keyframes govOfficeman1 {
 
     0%{
         top: 42%;
@@ -671,7 +671,7 @@
     left: 30%;
     z-index: 1;
     overflow: hidden;
-    animation: man2 20s infinite linear;
+    animation: govOfficeman2 20s infinite linear;
 }
 
 #govofficeman2>img {
@@ -685,7 +685,7 @@
 
 
 
-@keyframes man2 {
+@keyframes govOfficeman2 {
 
     0%{
         top: 80%;
@@ -762,7 +762,7 @@
     left: 30%;
     z-index: 1;
     overflow: hidden;
-    animation: man3 20s infinite linear;
+    animation: govOfficeman3 20s infinite linear;
 }
 
 #govofficeman3>img {
@@ -774,7 +774,7 @@
 }
 
 
-@keyframes man3 {
+@keyframes govOfficeman3 {
 
     0%{
         top: 85%;

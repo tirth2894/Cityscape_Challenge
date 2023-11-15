@@ -115,6 +115,7 @@
     top: 29%;
     left: 70%;
 }
+
 #firestationfireext02 {
     height: 07%;
     width: 12%;
@@ -128,6 +129,7 @@
     top: 6%;
     left: 17%;
 }
+
 #firestationfireext04 {
     height: 07%;
     width: 12%;
@@ -226,32 +228,21 @@
     top: 42%;
     left: 21%;
 }
-#firestationman01 {
-    height: 7%;
-    width: 05%;
-    top: 42%;
-    left: 06%;
+
+#firestationman03 {
+    height: 5%;
+    width: 5%;
+    top: 46%;
+    left: 6%;
 }
 
-#firestationman02 {
-    height: 7%;
-    width: 05%;
-    top: 42%;
+#firestationman04 {
+    height: 5%;
+    width: 5%;
+    top: 46%;
     left: 21%;
 }
 
-#firestationman03{
-    height:5%;
-    width:5%;
-    top:46%;
-    left:6%;
-}
-#firestationman04{
-    height:5%;
-    width:5%;
-    top:46%;
-    left: 21%;
-}
 #firestationman1 {
     position: absolute;
     width: calc(7% / 2);
@@ -259,10 +250,7 @@
     left: 35%;
     z-index: 1;
     overflow: hidden;
-    animation: man1 25s infinite linear;
-
-
-
+    animation: fireStationMan1 25s infinite linear;
 }
 
 #firestationman1>img {
@@ -274,12 +262,12 @@
 }
 
 .walk {
-    animation: walk .8s infinite steps(2);
+    animation: fireStaionwalk .8s infinite steps(2);
 }
 
 
 
-@keyframes walk {
+@keyframes fireStaionwalk {
     0% {
         left: 0%;
     }
@@ -288,7 +276,8 @@
         left: -200%;
     }
 }
-@keyframes man1 {
+
+@keyframes fireStationMan1 {
     0% {
         top: 60%;
         left: 44%;
@@ -300,61 +289,73 @@
         left: 44%;
         transform: rotate(0deg);
     }
+
     18% {
         top: 17%;
         left: 44%;
         transform: rotate(90deg);
     }
+
     43% {
         top: 17%;
         left: 90%;
         transform: rotate(90deg);
     }
+
     44% {
         top: 17%;
         left: 90%;
         transform: rotate(180deg);
     }
+
     46% {
         top: 21%;
         left: 90%;
         transform: rotate(180deg);
     }
+
     47% {
         top: 21%;
         left: 90%;
         transform: rotate(270deg);
     }
+
     73% {
         top: 21%;
         left: 50%;
         transform: rotate(270deg);
     }
+
     74% {
         top: 21%;
         left: 50%;
         transform: rotate(180deg);
     }
+
     92% {
         top: 60%;
         left: 50%;
         transform: rotate(180deg);
     }
+
     93% {
         top: 60%;
         left: 50%;
         transform: rotate(270deg);
     }
+
     98% {
         top: 60%;
         left: 44%;
         transform: rotate(270deg);
     }
+
     99% {
         top: 60%;
         left: 44%;
         transform: rotate(360deg);
     }
+
     100% {
         top: 60%;
         left: 44%;
@@ -369,7 +370,7 @@
     left: 35%;
     z-index: 1;
     overflow: hidden;
-    animation: man2 28s infinite linear;
+    animation: fireStationMan2 28s infinite linear;
 
 
 
@@ -383,86 +384,92 @@
     left: 0%;
 }
 
-
-
-
-
-
-
-@keyframes man2 {
+@keyframes fireStationMan2 {
 
     0% {
         top: 15%;
         left: 35%;
         transform: rotate(0deg);
     }
+
     20% {
         top: 70%;
         left: 35%;
         transform: rotate(0deg);
-    }  
-    
+    }
+
     21% {
         top: 70%;
         left: 35%;
         transform: rotate(90deg);
     }
+
     30% {
         top: 70%;
         left: 20%;
         transform: rotate(90deg);
     }
+
     31% {
         top: 70%;
         left: 20%;
         transform: rotate(180deg);
     }
+
     36% {
         top: 60%;
         left: 20%;
         transform: rotate(180deg);
     }
+
     37% {
         top: 60%;
         left: 20%;
         transform: rotate(270deg);
     }
+
     47% {
         top: 60%;
         left: 35%;
         transform: rotate(270deg);
     }
+
     48% {
         top: 60%;
         left: 35%;
         transform: rotate(180deg);
     }
+
     70% {
         top: 15%;
         left: 35%;
         transform: rotate(180deg);
     }
+
     71% {
         top: 15%;
         left: 35%;
         transform: rotate(90deg);
     }
+
     85% {
         top: 15%;
         left: 10%;
         transform: rotate(90deg);
     }
+
     86% {
         top: 15%;
         left: 10%;
         transform: rotate(270deg);
     }
+
     100% {
         top: 15%;
         left: 35%;
         transform: rotate(270deg);
     }
-   
+
 
 
 

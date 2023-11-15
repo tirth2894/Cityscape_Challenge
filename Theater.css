@@ -375,16 +375,16 @@
 #theaterPeople1
 {
     height : 5%;
-    width: 4%;
-    left: 71%;
+    width: 3%;
+    left: 71.5%;
     top: 21%;
 }
 
 #theaterPeople2
 {
     height : 5%;
-    width: 4%;
-    left: 81%;
+    width: 3%;
+    left: 81.5%;
     top: 43%;
 }
 
@@ -437,7 +437,7 @@
     left: 64%;
     z-index: 1;
     overflow: hidden;
-    animation: ani 25s infinite linear ;
+    animation: theaterperson 25s infinite linear ;
 }
 
 #theaterChr1 > img {
@@ -448,7 +448,7 @@
     left: 0%;
 }
 
-@keyframes ani {
+@keyframes theaterperson {
    0%{
       top: 42%;
      left: 64%;
@@ -505,7 +505,7 @@
     left: 55%;
     z-index: 1;
     overflow: hidden;
-    animation: ani2 20s infinite linear ;
+    animation: theaterperson2 20s infinite linear ;
 }
 
 #theaterChr2 > img {
@@ -515,7 +515,7 @@
     top: 0%;
     left: 0%;
 }
-@keyframes ani2{
+@keyframes theaterperson2{
     0%{
         top: 5%;
         left: 55%;

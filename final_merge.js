@@ -26,10 +26,10 @@ let objects;
 
 const speed = 7;
 
-window.onload = function(){
+window.onload = function () {
     load.style.display = "none";
     player.style.display = "block";
-    
+
     mapUpdate(map, objects);
     playerupdate();
 
@@ -54,7 +54,7 @@ function mapUpdate(placeMap, objects) {
                     placeMap.style.top = pos + speed + "px";
                     if (objectOverlap(objects)) {
                         pos = player.getBoundingClientRect().top;
-                        player.style.top = pos + speed+ "px";
+                        player.style.top = pos + speed + "px";
                     }
                 }
 
@@ -235,33 +235,33 @@ function overlap() {
 
     if (check(elisahome)) {
         let tempMap = document.getElementById("elisahomeMap");
-        objects = document.getElementsByClassName("elisaHomeObject"); 
-        goinside(tempMap,objects);
+        objects = document.getElementsByClassName("elisaHomeObject");
+        goinside(tempMap, objects);
     }
     else if (check(policestation)) {
         let tempMap = document.getElementById("policestationMap");
         objects = document.getElementsByClassName("policeStationObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(firestation)) {
         let tempMap = document.getElementById("firestationMap");
         objects = document.getElementsByClassName("fireStationObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(govtoffice)) {
         let tempMap = document.getElementById("govtofficeMap");
         objects = document.getElementsByClassName("govOfficeObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(mall)) {
         let tempMap = document.getElementById("mallMap");
         objects = document.getElementsByClassName("mallObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(hospital)) {
         let tempMap = document.getElementById("hospitalMap");
         objects = document.getElementsByClassName("hospitalObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(gamezone)) {
         let tempMap = document.getElementById("gamezoneMap");
@@ -270,12 +270,12 @@ function overlap() {
     else if (check(school)) {
         let tempMap = document.getElementById("schoolMap");
         objects = document.getElementsByClassName("schoolObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(postoffice)) {
         let tempMap = document.getElementById("postofficeMap");
         objects = document.getElementsByClassName("postOfficeObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(home)) {
         let tempMap = document.getElementById("homeMap");
@@ -285,27 +285,27 @@ function overlap() {
     else if (check(bank)) {
         let tempMap = document.getElementById("bankMap");
         objects = document.getElementsByClassName("bankObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(hotel)) {
         let tempMap = document.getElementById("hotelMap");
         objects = document.getElementsByClassName("hotelObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(garden)) {
         let tempMap = document.getElementById("gardenMap");
         objects = document.getElementsByClassName("gardenObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(johnhome)) {
         let tempMap = document.getElementById("johnhomeMap");
         objects = document.getElementsByClassName("johnHomeObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
     else if (check(theater)) {
         let tempMap = document.getElementById("theaterMap");
         objects = document.getElementsByClassName("theaterObject");
-        goinside(tempMap,objects);
+        goinside(tempMap, objects);
     }
 }
 
@@ -315,7 +315,7 @@ function goinside(placeMap, objects) {
     let playerTop = player.getBoundingClientRect().top;
     let playerLeft = player.getBoundingClientRect().left;
 
-    
+
     map.style.display = "none";
     placeMap.style.display = "block";
     placeMap.style.top = "0%";
@@ -338,3 +338,28 @@ function goinside(placeMap, objects) {
         }
     })
 }
+
+function carCollison() {
+    let cars = document.getElementsByClassName("car");
+    let temp = null,flag = false;
+    setInterval(() => {
+        for (let i = 0; i < cars.length; i++) {
+            if (check(cars[i])) {
+                cars[i].style.animationPlayState = "paused";
+                temp = i;
+                flag = true;
+            }
+        }
+
+        if(flag)
+        {
+            let t = setTimeout(() => {
+                cars[temp].style.animationPlayState = "running";
+            }, 2500);
+            flag = false;
+        }
+
+    }, 50);
+}
+
+carCollison();

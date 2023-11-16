@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body{
@@ -49,16 +50,82 @@ body{
 
 /* Navbar */
 .navbar{
-    background-color: rgba(0, 0, 0, 0.719);
+    background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0%;
     left: 0%;
-    padding: 1%;
     z-index: 2;
-    color: white;
+    height: 10%;
     width: 100%;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.navbar > #msg{
+    color: white;
+    width: 85%;
+    height: 100%;
+    padding: 0.5%;
+    overflow: auto;
+    display: inline-block;
+}
+
+.navbar > .container{
+    height: 100%;
+    width: 15%;
+    color: white;
+    font-weight: bold;
+    padding: 0% 1%;
+    display: inline-block;
+}
+
+.container > div{
+    height: calc(100%/3);
+    padding: 1% 0%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.energyContainer > #energy{
+    width: 85%;
+    padding: 0% 5%;
+    display: inline-block;
+}
+
+.energyContainer > img{
+    height: 100%;
+    float: right;
+}
+
+
+.lifeContainer > #life{
+    width: 85%;
+    padding: 0% 5%;
+    display: inline-block;
+}
+
+.lifeContainer > img{
+    height: 100%;
+    float: right;
+}
+
+
+.coinContainer > #coin{
+    width: 85%;
+    padding: 0% 5%;
+    display: inline-block;
+}
+
+.coinContainer > img{
+    height: 100%;
+    float: right;
+}
+
+
 
 /* Camera */
 .camera{

@@ -1,37 +1,43 @@
-let load = document.getElementById("loading");
 let map = document.getElementById("map");
 let camera = document.getElementById("camera");
 let player = document.getElementById("player");
-let items = document.getElementsByClassName("item");
-let elisahome = document.getElementById("elisahome");
-let policestation = document.getElementById("policestation");
-let firestation = document.getElementById("firestation");
-let govtoffice = document.getElementById("govtoffice");
-let mall = document.getElementById("mall");
-let hospital = document.getElementById("hospital");
-let gamezone = document.getElementById("gamezone");
-let school = document.getElementById("school");
-let postoffice = document.getElementById("postoffice");
-let home = document.getElementById("home");
-let bank = document.getElementById("bank");
-let hotel = document.getElementById("hotel");
-let garden = document.getElementById("garden");
-let johnhome = document.getElementById("johnhome");
-let theater = document.getElementById("theater");
 
 let message = document.getElementById("msg");
 
+let energyScore = document.getElementById("energyScore");
+let lifeScore = document.getElementById("lifeScore");
+let coinScore = document.getElementById("coinScore");
+
+
 let mapUpdateEvent;
 let objects;
-
+let gameStatus = {
+    energy: 100,
+    life: 3,
+    coin: 0
+}
 const speed = 7;
 
 window.onload = function () {
+    let load = document.getElementById("loading");
     load.style.display = "none";
     player.style.display = "block";
 
     mapUpdate(map, objects);
     playerupdate();
+    let status = JSON.parse(localStorage.getItem('cityscapeChallenges'));
+    if (status == null) {
+        localStorage.setItem('cityscapeChallenges', JSON.stringify(gameStatus));
+    }
+    else {
+        gameStatus.energy = status.energy;
+        gameStatus.life = status.life;
+        gameStatus.coin = status.coin;
+    }
+
+    energyScore.innerText = gameStatus.energy;
+    lifeScore.innerText = gameStatus.life;
+    coinScore.innerText = gameStatus.coin;
 
 };
 
@@ -232,6 +238,21 @@ function check(item) {
 }
 
 function overlap() {
+    let elisahome = document.getElementById("elisahome");
+    let policestation = document.getElementById("policestation");
+    let firestation = document.getElementById("firestation");
+    let govtoffice = document.getElementById("govtoffice");
+    let mall = document.getElementById("mall");
+    let hospital = document.getElementById("hospital");
+    let gamezone = document.getElementById("gamezone");
+    let school = document.getElementById("school");
+    let postoffice = document.getElementById("postoffice");
+    let home = document.getElementById("home");
+    let bank = document.getElementById("bank");
+    let hotel = document.getElementById("hotel");
+    let garden = document.getElementById("garden");
+    let johnhome = document.getElementById("johnhome");
+    let theater = document.getElementById("theater");
 
     if (check(elisahome)) {
         let tempMap = document.getElementById("elisahomeMap");
@@ -339,27 +360,34 @@ function goinside(placeMap, objects) {
     })
 }
 
-function carCollison() {
+function carCollision() {
     let cars = document.getElementsByClassName("car");
-    let temp = null,flag = false;
-    setInterval(() => {
+    let carStates = Array.from(cars).fill(false);
+    let carCollisionInterval = setInterval(() => {
         for (let i = 0; i < cars.length; i++) {
             if (check(cars[i])) {
-                cars[i].style.animationPlayState = "paused";
-                temp = i;
-                flag = true;
+                if (!carStates[i]) {
+                    cars[i].style.animationPlayState = "paused";
+
+                    gameStatus.energy -= 5;
+                    displayGameStatus();
+
+                    setTimeout(() => {
+                        cars[i].style.animationPlayState = "running";
+                        carStates[i] = false;
+                    }, 5000);
+
+                    carStates[i] = true;
+                }
             }
         }
-
-        if(flag)
-        {
-            let t = setTimeout(() => {
-                cars[temp].style.animationPlayState = "running";
-            }, 2500);
-            flag = false;
-        }
-
     }, 50);
 }
+carCollision();
 
-carCollison();
+function displayGameStatus() {
+    localStorage.setItem('cityscapeChallenges', JSON.stringify(gameStatus));
+    energyScore.innerText = gameStatus.energy;
+    lifeScore.innerText = gameStatus.life;
+    coinScore.innerText = gameStatus.coin;
+}

@@ -791,10 +791,10 @@
     left: 22%;
     z-index: 1;
     overflow: hidden;
-    animation: schollMan1 20s infinite linear;
+    animation: maschollMan1 20s infinite linear;
 }
 
-@keyframes maschollMan1n1 {
+@keyframes maschollMan1 {
     0% {
         transform: rotate(0deg);
         top: 90%;

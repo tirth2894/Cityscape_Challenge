@@ -139,6 +139,7 @@ body{
     width: 325%;
     background-color: rgb(58, 57, 57);
     position: relative;
+    display: none;
 }
 
 .item{
@@ -160,6 +161,7 @@ body{
     z-index: 1;
     overflow: hidden;
     display: none;
+    border: 1px solid red;
 }
 
 .player > img {

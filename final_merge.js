@@ -14,14 +14,35 @@ let objects;
 let gameStatus = {
     energy: 100,
     life: 3,
-    coin: 0
+    coin: 0,
+    level: 1
 }
-const speed = 7;
+const speed = 10;
+
+let mission = {
+    one: "In the heart of learning, where minds convene, a quiet abode for those unseen. Find the tale that whispers in the domain, where breaks are taken, and knowledge may reign.",
+    two: "In a dwelling of comfort, where meals find repose, investigate the cool sanctuary where freshness bestows. Open the door where chilling airs sway, discover the clue where goodies hold sway.",
+    three: "Amidst the shelves of crunchy delights, where sweet memories take their flights, explore the aisle where tea-time dreams align, and discover a hidden gem, a delight to find.",
+    four: "In the quiet halls where healing is sought, a guardian stands, wise and thought. Seek the presence where serenity blends, in a corner where grace quietly extends.",
+    five: "A dedicated space for knowledge to unfold, with a flat surface for ideas to take hold. Pens, paper, and focus align, where the quest for wisdom is truly divine.",
+    six: "Embraced by duty's holster, a symbol of commanding presence. Secured within the armory's confines, it awaits the summons. Transitioning from vigilant sidearm to silent observer, it resonates with the weighty responsibility entrusted to those who hold it.",
+    seven: "Where financial transactions find their rest, in the realm of currencies, at their best. Seek the discarded secrets where old papers go to rest.",
+    eight: "In the intricate bureaucratic maze where paperwork flourishes, reveal an apparatus that animates the official scrolls. It stands watchful, a mechanical wordsmith in the revered chambers of governance, inscribing the narratives of bureaucracy onto pristine sheets.",
+    nine: "Amidst nature's canvas, a resting place emerges. Carved from earth's embrace, this silent companion invites repose. A tableau of tranquility, where flora and foliage frame moments of respite.",
+    ten: "In the realm of letters and parcels arrayed, where stamps tell stories and journeys are weighed, seek the electronic companion, silent and grand, where the post meets the digital, in a quiet land.",
+    eleven: "In the clandestine realm of culinary enchantment, unearth the obscured fire maestro. An inconspicuous choreographer, directing the gastronomic symphony, transmuting raw constituents into savory opuses. Unseen yet irreplaceable, it kindles the culinary craftsmanship that adorns the epicurean sanctuary.",
+    twelve: "Within the quiet expectancy of visual marvels, find the creator of crunchy delights. A masterful alchemist nestled in red-and-white treasures, anticipating its moment to burst into a symphony of flavors. A modest bringer of joy, transforming the space into an aromatic carnival of cinematic indulgence.",
+    thirteen: "Within the realm of emergency readiness, seek the guardians of the flame adorned in protective gauntlets. These tactile wardens stand poised, ready to confront the inferno's fury. Clad in armor against the elemental dance, they epitomize the brave boundary between chaos and order.",
+    fourteen: "Amidst the blossoms and beneath the open sky, find the furry guardian. A loyal companion in the outdoor haven, it frolics in the green expanse, a living emblem of joy and playfulness.",
+    fifteen: "Within the walls of your abode, uncover the silent sentinel of storage. A keeper of treasures and necessities, it stands poised, offering both concealment and revelation. A symphony of shelves and doors, where organization meets the art of domesticity."
+}
+
 
 window.onload = function () {
     let load = document.getElementById("loading");
     load.style.display = "none";
     player.style.display = "block";
+    map.style.display = "block"; 
 
     mapUpdate(map, objects);
     playerupdate();
@@ -33,14 +54,11 @@ window.onload = function () {
         gameStatus.energy = status.energy;
         gameStatus.life = status.life;
         gameStatus.coin = status.coin;
+        gameStatus.level = status.level;
     }
 
-    energyScore.innerText = gameStatus.energy;
-    lifeScore.innerText = gameStatus.life;
-    coinScore.innerText = gameStatus.coin;
-
+    displayGameStatus();
 };
-
 
 function mapUpdate(placeMap, objects) {
     addEventListener('keydown', mapUpdateEvent = e => {
@@ -155,12 +173,13 @@ function playerupdate() {
                 case 'ArrowUp':
 
                     pos = parseInt(getComputedStyle(player).top);
-
+                    chara.src = "image/sprite_up.png";
                     chara.classList.add("walk");
+                    
                     if (pos > 0) {
                         player.style.top = pos - speed + "px";
                         overlap();
-                        chara.src = "image/sprite_up.png";
+                        displayMission();
 
                     }
                     break;
@@ -172,11 +191,12 @@ function playerupdate() {
                     pos = parseInt(getComputedStyle(player).top);
                     chara.src = "image/sprite_down.png";
                     chara.classList.add("walk");
-
+                    
                     if (pos < Math.abs(player_height - camera_height)) {
                         player.style.top = pos + speed + "px";
-
+                        
                         overlap();
+                        displayMission();
                     }
                     break;
 
@@ -185,13 +205,13 @@ function playerupdate() {
                 case 'ArrowLeft':
 
                     pos = parseInt(getComputedStyle(player).left);
+                    chara.src = "image/sprite_left.png";
                     chara.classList.add("walk");
-
+                    
                     if (pos > 0) {
                         player.style.left = pos - speed + "px";
                         overlap();
-                        chara.src = "image/sprite_left.png";
-
+                        displayMission();
                     }
                     break;
 
@@ -200,17 +220,18 @@ function playerupdate() {
                 case 'ArrowRight':
 
                     pos = parseInt(getComputedStyle(player).left);
+                    chara.src = "image/sprite_right.png";
                     chara.classList.add("walk");
-
+                    
                     if (pos < Math.abs(player_width - camera_width)) {
                         player.style.left = pos + speed + "px";
                         overlap();
-                        chara.src = "image/sprite_right.png";
-
+                        displayMission();
                     }
                     break;
             }
         }
+
     });
 
     addEventListener('keyup', e => {
@@ -390,4 +411,79 @@ function displayGameStatus() {
     energyScore.innerText = gameStatus.energy;
     lifeScore.innerText = gameStatus.life;
     coinScore.innerText = gameStatus.coin;
+}
+
+function displayMission() {
+    let missionPlace;
+
+    switch (gameStatus.level) {
+        case 1:
+            message.innerText = mission.one;
+            missionPlace = document.getElementById("schoolStaffRoomTable");
+            break;
+        case 2:
+            message.innerText = mission.two;
+            missionPlace = document.getElementById("elisaHomeFridge");
+            break;
+        case 3:
+            message.innerText = mission.three;
+            missionPlace = document.getElementById("mallBiscuit01");
+
+            break;
+        case 4:
+            message.innerText = mission.four;
+            missionPlace = document.getElementById("hospitalGanpatiMurti");
+            break;
+        case 5:
+            message.innerText = mission.five;
+            missionPlace = document.getElementById("johnHomeStudyTable");
+            break;
+        case 6:
+            message.innerText = mission.six;
+            missionPlace = document.getElementById("policestationtable2");
+            break;
+        case 7:
+            message.innerText = mission.seven;
+            missionPlace = document.getElementById("bankDustbin4");
+            break;
+        case 8:
+            message.innerText = mission.eight;
+            missionPlace = document.getElementById("govofficezerox1");
+            break;
+        case 9:
+            missionPlace = document.getElementById("gardenBench1");
+            message.innerText = mission.nine;
+            break;
+        case 10:
+            message.innerText = mission.ten;
+            missionPlace = document.getElementById("postOfficeOfficeTable");
+            break;
+        case 11:
+            message.innerText = mission.eleven;
+            missionPlace = document.getElementById("hotelKitchenHorizontal");
+            break;
+        case 12:
+            message.innerText = mission.twelve;
+            missionPlace = document.getElementById("theaterFoodCounter");
+            break;
+        case 13:
+            message.innerText = mission.thirteen;
+            missionPlace = document.getElementById("firestationhandgloves1");
+            break;
+        case 14:
+            message.innerText = mission.fourteen;
+            missionPlace = document.getElementById("gardenDog");
+            break;
+        case 15:
+            message.innerText = mission.fifteen;
+            missionPlace = document.getElementById("homeLivingRoomCabinet");
+            break;
+    }
+
+    missionPlace.style.boxShadow = "0px 0px 10px blue";
+    if (check(missionPlace)) {
+        window.alert("completed");
+        gameStatus.level = gameStatus.level + 1;
+        displayGameStatus();
+    }
 }

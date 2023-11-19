@@ -3,6 +3,7 @@ let camera = document.getElementById("camera");
 let player = document.getElementById("player");
 
 let message = document.getElementById("msg");
+let messageContainer = document.getElementById("massegeContainer");
 
 let energyScore = document.getElementById("energyScore");
 let lifeScore = document.getElementById("lifeScore");
@@ -42,7 +43,7 @@ window.onload = function () {
     let load = document.getElementById("loading");
     load.style.display = "none";
     player.style.display = "block";
-    map.style.display = "block"; 
+    map.style.display = "block";
 
     mapUpdate(map, objects);
     playerupdate();
@@ -175,7 +176,7 @@ function playerupdate() {
                     pos = parseInt(getComputedStyle(player).top);
                     chara.src = "image/sprite_up.png";
                     chara.classList.add("walk");
-                    
+
                     if (pos > 0) {
                         player.style.top = pos - speed + "px";
                         overlap();
@@ -191,10 +192,10 @@ function playerupdate() {
                     pos = parseInt(getComputedStyle(player).top);
                     chara.src = "image/sprite_down.png";
                     chara.classList.add("walk");
-                    
+
                     if (pos < Math.abs(player_height - camera_height)) {
                         player.style.top = pos + speed + "px";
-                        
+
                         overlap();
                         displayMission();
                     }
@@ -207,7 +208,7 @@ function playerupdate() {
                     pos = parseInt(getComputedStyle(player).left);
                     chara.src = "image/sprite_left.png";
                     chara.classList.add("walk");
-                    
+
                     if (pos > 0) {
                         player.style.left = pos - speed + "px";
                         overlap();
@@ -222,7 +223,7 @@ function playerupdate() {
                     pos = parseInt(getComputedStyle(player).left);
                     chara.src = "image/sprite_right.png";
                     chara.classList.add("walk");
-                    
+
                     if (pos < Math.abs(player_width - camera_width)) {
                         player.style.left = pos + speed + "px";
                         overlap();
@@ -407,83 +408,141 @@ function carCollision() {
 carCollision();
 
 function displayGameStatus() {
-    localStorage.setItem('cityscapeChallenges', JSON.stringify(gameStatus));
-    energyScore.innerText = gameStatus.energy;
-    lifeScore.innerText = gameStatus.life;
-    coinScore.innerText = gameStatus.coin;
+
+    if (gameStatus.energy <= 0 || gameStatus.life <= 0) {
+        window.alert("game Over");
+    }
+    else {
+        localStorage.setItem('cityscapeChallenges', JSON.stringify(gameStatus));
+        energyScore.innerText = gameStatus.energy;
+        lifeScore.innerText = gameStatus.life;
+        coinScore.innerText = gameStatus.coin;
+    }
+
+
 }
 
 function displayMission() {
-    let missionPlace;
+    let missionPlace, codeNumber = 0, flag = 0, placeMap;
 
     switch (gameStatus.level) {
         case 1:
             message.innerText = mission.one;
             missionPlace = document.getElementById("schoolStaffRoomTable");
+            placeMap = document.getElementById("schoolMap");
             break;
         case 2:
             message.innerText = mission.two;
             missionPlace = document.getElementById("elisaHomeFridge");
+            placeMap = document.getElementById("elisahomeMap");
             break;
         case 3:
             message.innerText = mission.three;
             missionPlace = document.getElementById("mallBiscuit01");
-
+            placeMap = document.getElementById("mallMap");
+            codeNumber = 1;
             break;
         case 4:
             message.innerText = mission.four;
             missionPlace = document.getElementById("hospitalGanpatiMurti");
+            placeMap = document.getElementById("hospitalMap");
             break;
         case 5:
             message.innerText = mission.five;
             missionPlace = document.getElementById("johnHomeStudyTable");
+            placeMap = document.getElementById("johnhomeMap");
             break;
         case 6:
             message.innerText = mission.six;
             missionPlace = document.getElementById("policestationtable2");
+            placeMap = document.getElementById("policestationMap");
+            codeNumber = 23;
             break;
         case 7:
             message.innerText = mission.seven;
             missionPlace = document.getElementById("bankDustbin4");
+            placeMap = document.getElementById("bankMap");
             break;
         case 8:
             message.innerText = mission.eight;
             missionPlace = document.getElementById("govofficezerox1");
+            placeMap = document.getElementById("govtofficeMap");
             break;
         case 9:
             missionPlace = document.getElementById("gardenBench1");
             message.innerText = mission.nine;
+            placeMap = document.getElementById("gardenMap");
+            codeNumber = 28;
             break;
         case 10:
             message.innerText = mission.ten;
             missionPlace = document.getElementById("postOfficeOfficeTable");
+            placeMap = document.getElementById("postofficeMap");
             break;
         case 11:
             message.innerText = mission.eleven;
             missionPlace = document.getElementById("hotelKitchenHorizontal");
+            placeMap = document.getElementById("hotelMap");
             break;
         case 12:
             message.innerText = mission.twelve;
             missionPlace = document.getElementById("theaterFoodCounter");
+            placeMap = document.getElementById("theaterMap");
+            codeNumber = 26;
             break;
         case 13:
             message.innerText = mission.thirteen;
             missionPlace = document.getElementById("firestationhandgloves1");
+            placeMap = document.getElementById("firestationMap");
             break;
         case 14:
             message.innerText = mission.fourteen;
             missionPlace = document.getElementById("gardenDog");
+            placeMap = document.getElementById("gardenMap");
             break;
         case 15:
             message.innerText = mission.fifteen;
             missionPlace = document.getElementById("homeLivingRoomCabinet");
+            placeMap = document.getElementById("homeMap");
+            codeNumber = 9;
+            flag = 1;
             break;
     }
 
     missionPlace.style.boxShadow = "0px 0px 10px blue";
+
     if (check(missionPlace)) {
-        window.alert("completed");
-        gameStatus.level = gameStatus.level + 1;
+        placeMap.style.display = "none";
+        player.style.display = "none";
+        messageContainer.style.display = "flex";
+
+        setTimeout(() => {
+            messageContainer.style.display = "none";
+            player.style.display = "block";
+            placeMap.style.display = "block";
+        }, 1500);
+
+
+        gameStatus.coin = gameStatus.coin + 1000;
+
+        if (codeNumber != 0) {
+            window.alert("Remember this number : " + codeNumber);
+            codeNumber = 0;
+        }
+
+        if (flag != 0) {
+            let treasureCode = window.prompt("Enter Multiply of all previous number : ");
+            if (treasureCode == 150696) {
+                window.alert("You won the game");
+            }
+            else {
+                window.alert("You enter wrong code");
+            }
+        }
+        else {
+            gameStatus.level = gameStatus.level + 1;
+        }
+
         displayGameStatus();
     }
 }

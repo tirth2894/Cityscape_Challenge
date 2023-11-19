@@ -133,6 +133,26 @@ body{
     overflow: hidden;
 }
 
+/* Message */
+#massegeContainer{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(0, 0, 0, 0.664);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#massegeContainer > p{
+    font-size: 500%;
+    color: orange;
+    font-weight: bold;
+}
+
 /* MAP */
 .map{
     height: 325%;

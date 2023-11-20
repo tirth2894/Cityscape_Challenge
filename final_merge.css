@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: cursive;
 }
 
 body{
@@ -140,8 +140,9 @@ body{
     width: 100%;
     top: 0%;
     left: 0%;
-    background-color: rgba(0, 0, 0, 0.664);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
+    text-align: center;
     align-items: center;
     justify-content: center;
     display: none;

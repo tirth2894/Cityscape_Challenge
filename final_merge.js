@@ -4,11 +4,13 @@ let player = document.getElementById("player");
 
 let message = document.getElementById("msg");
 let messageContainer = document.getElementById("massegeContainer");
+let gameMessage = document.getElementById("message");
 
 let energyScore = document.getElementById("energyScore");
 let lifeScore = document.getElementById("lifeScore");
 let coinScore = document.getElementById("coinScore");
 
+let carCollisionInterval;
 
 let mapUpdateEvent;
 let objects;
@@ -276,83 +278,114 @@ function overlap() {
     let johnhome = document.getElementById("johnhome");
     let theater = document.getElementById("theater");
 
+    let playerTop,playerLeft;
     if (check(elisahome)) {
         let tempMap = document.getElementById("elisahomeMap");
         objects = document.getElementsByClassName("elisaHomeObject");
-        goinside(tempMap, objects);
+        playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(policestation)) {
         let tempMap = document.getElementById("policestationMap");
         objects = document.getElementsByClassName("policeStationObject");
-        goinside(tempMap, objects);
+        playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(firestation)) {
         let tempMap = document.getElementById("firestationMap");
         objects = document.getElementsByClassName("fireStationObject");
-        goinside(tempMap, objects);
+        playerTop = 40;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(govtoffice)) {
         let tempMap = document.getElementById("govtofficeMap");
         objects = document.getElementsByClassName("govOfficeObject");
-        goinside(tempMap, objects);
+        playerTop = 80;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(mall)) {
         let tempMap = document.getElementById("mallMap");
         objects = document.getElementsByClassName("mallObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(hospital)) {
         let tempMap = document.getElementById("hospitalMap");
         objects = document.getElementsByClassName("hospitalObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(gamezone)) {
         let tempMap = document.getElementById("gamezoneMap");
+         playerTop = 70;
+        playerLeft = 50;
         goinside(tempMap);
     }
     else if (check(school)) {
         let tempMap = document.getElementById("schoolMap");
         objects = document.getElementsByClassName("schoolObject");
-        goinside(tempMap, objects);
+         playerTop = 85;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(postoffice)) {
         let tempMap = document.getElementById("postofficeMap");
         objects = document.getElementsByClassName("postOfficeObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(home)) {
         let tempMap = document.getElementById("homeMap");
         objects = document.getElementsByClassName("homeObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 60;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(bank)) {
         let tempMap = document.getElementById("bankMap");
         objects = document.getElementsByClassName("bankObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(hotel)) {
         let tempMap = document.getElementById("hotelMap");
         objects = document.getElementsByClassName("hotelObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 65;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(garden)) {
         let tempMap = document.getElementById("gardenMap");
         objects = document.getElementsByClassName("gardenObject");
-        goinside(tempMap, objects);
+         playerTop = 50;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(johnhome)) {
         let tempMap = document.getElementById("johnhomeMap");
         objects = document.getElementsByClassName("johnHomeObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
     else if (check(theater)) {
         let tempMap = document.getElementById("theaterMap");
         objects = document.getElementsByClassName("theaterObject");
-        goinside(tempMap, objects);
+         playerTop = 70;
+        playerLeft = 50;
+        goinside(tempMap, objects, playerTop, playerLeft);
     }
 }
 
-function goinside(placeMap, objects) {
+function goinside(placeMap, objects, playerInsideTop, playerInsideLeft) {
     let mapTop = map.getBoundingClientRect().top;
     let mapLeft = map.getBoundingClientRect().left;
     let playerTop = player.getBoundingClientRect().top;
@@ -363,6 +396,8 @@ function goinside(placeMap, objects) {
     placeMap.style.display = "block";
     placeMap.style.top = "0%";
     placeMap.style.left = "0%";
+    player.style.top = playerInsideTop + "%";
+    player.style.left = playerInsideLeft + "%";
 
     mapUpdate(placeMap, objects);
 
@@ -385,7 +420,7 @@ function goinside(placeMap, objects) {
 function carCollision() {
     let cars = document.getElementsByClassName("car");
     let carStates = Array.from(cars).fill(false);
-    let carCollisionInterval = setInterval(() => {
+    carCollisionInterval = setInterval(() => {
         for (let i = 0; i < cars.length; i++) {
             if (check(cars[i])) {
                 if (!carStates[i]) {
@@ -410,7 +445,7 @@ carCollision();
 function displayGameStatus() {
 
     if (gameStatus.energy <= 0 || gameStatus.life <= 0) {
-        window.alert("game Over");
+        gameover();
     }
     else {
         localStorage.setItem('cityscapeChallenges', JSON.stringify(gameStatus));
@@ -423,88 +458,107 @@ function displayGameStatus() {
 }
 
 function displayMission() {
-    let missionPlace, codeNumber = 0, flag = 0, placeMap;
+    let missionPlace, codeNumber = 0, flag = 0, placeMap, timing = 1500;
 
     switch (gameStatus.level) {
         case 1:
             message.innerText = mission.one;
             missionPlace = document.getElementById("schoolStaffRoomTable");
             placeMap = document.getElementById("schoolMap");
+            timing = 1500;
             break;
         case 2:
             message.innerText = mission.two;
             missionPlace = document.getElementById("elisaHomeFridge");
             placeMap = document.getElementById("elisahomeMap");
+            timing = 1500;
             break;
         case 3:
             message.innerText = mission.three;
             missionPlace = document.getElementById("mallBiscuit01");
             placeMap = document.getElementById("mallMap");
             codeNumber = 1;
+            timing = 4000;
             break;
         case 4:
             message.innerText = mission.four;
             missionPlace = document.getElementById("hospitalGanpatiMurti");
             placeMap = document.getElementById("hospitalMap");
+            timing = 1500;
             break;
         case 5:
             message.innerText = mission.five;
             missionPlace = document.getElementById("johnHomeStudyTable");
             placeMap = document.getElementById("johnhomeMap");
+            timing = 1500;
             break;
         case 6:
             message.innerText = mission.six;
             missionPlace = document.getElementById("policestationtable2");
             placeMap = document.getElementById("policestationMap");
             codeNumber = 23;
+            timing = 4000;
+
             break;
         case 7:
             message.innerText = mission.seven;
             missionPlace = document.getElementById("bankDustbin4");
             placeMap = document.getElementById("bankMap");
+            timing = 1500;
             break;
         case 8:
             message.innerText = mission.eight;
             missionPlace = document.getElementById("govofficezerox1");
             placeMap = document.getElementById("govtofficeMap");
+            timing = 1500;
             break;
         case 9:
             missionPlace = document.getElementById("gardenBench1");
             message.innerText = mission.nine;
             placeMap = document.getElementById("gardenMap");
             codeNumber = 28;
+            timing = 4000;
+
             break;
         case 10:
             message.innerText = mission.ten;
             missionPlace = document.getElementById("postOfficeOfficeTable");
             placeMap = document.getElementById("postofficeMap");
+            timing = 1500;
             break;
         case 11:
             message.innerText = mission.eleven;
             missionPlace = document.getElementById("hotelKitchenHorizontal");
             placeMap = document.getElementById("hotelMap");
+            timing = 1500;
             break;
         case 12:
             message.innerText = mission.twelve;
             missionPlace = document.getElementById("theaterFoodCounter");
             placeMap = document.getElementById("theaterMap");
             codeNumber = 26;
+            timing = 4000;
+
             break;
         case 13:
             message.innerText = mission.thirteen;
             missionPlace = document.getElementById("firestationhandgloves1");
             placeMap = document.getElementById("firestationMap");
+            timing = 1500;
             break;
         case 14:
             message.innerText = mission.fourteen;
             missionPlace = document.getElementById("gardenDog");
             placeMap = document.getElementById("gardenMap");
+            timing = 1500;
             break;
         case 15:
             message.innerText = mission.fifteen;
             missionPlace = document.getElementById("homeLivingRoomCabinet");
             placeMap = document.getElementById("homeMap");
             codeNumber = 9;
+            timing = 4000;
+
             flag = 1;
             break;
     }
@@ -512,23 +566,27 @@ function displayMission() {
     missionPlace.style.boxShadow = "0px 0px 10px blue";
 
     if (check(missionPlace)) {
-        placeMap.style.display = "none";
-        player.style.display = "none";
-        messageContainer.style.display = "flex";
+        
+        if (codeNumber != 0) {
+            gameMessage.innerHTML = "Mission Completed <br> Remember this number : "  + codeNumber;
 
+            codeNumber = 0;
+        }
+        else{
+            gameMessage.innerText = "Mission Completed";
+        }
+        
+        messageContainer.style.display = "flex";
+        camera.style.display = "none";
         setTimeout(() => {
             messageContainer.style.display = "none";
-            player.style.display = "block";
-            placeMap.style.display = "block";
-        }, 1500);
+            camera.style.display = "block";
+
+        }, timing);
 
 
         gameStatus.coin = gameStatus.coin + 1000;
 
-        if (codeNumber != 0) {
-            window.alert("Remember this number : " + codeNumber);
-            codeNumber = 0;
-        }
 
         if (flag != 0) {
             let treasureCode = window.prompt("Enter Multiply of all previous number : ");
@@ -545,4 +603,16 @@ function displayMission() {
 
         displayGameStatus();
     }
+}
+
+
+function gameover(){
+    clearInterval(carCollisionInterval);
+    localStorage.removeItem('cityscapeChallenges');
+    gameMessage.innerText = "You died";
+    camera.style.display = "none";
+    messageContainer.style.display = "flex";
+
+    //playerupdate
+    //mapenterivent
 }

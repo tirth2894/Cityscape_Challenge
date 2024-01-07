@@ -4,7 +4,7 @@
 .bankInsideMap{
     height:180%;
     width:180%;
-    background-image: url('image/bankBaseImage.png');
+    background-image: url('component/bankBaseImage.png');
     background-repeat: no-repeat;
     display: none;
     background-size: 100% 100%;

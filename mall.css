@@ -1,7 +1,7 @@
 .mallInsideMap {
     height: 130%;
     width: 130%;
-    background-image: url('image/floor123.jpg');
+    background-image: url('component/floor123.jpg');
     position: relative;
     display: none;
     background-repeat: no-repeat;

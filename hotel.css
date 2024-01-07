@@ -1,7 +1,7 @@
 .hotelInsideMap{
     height: 170%;
     width:170%;
-    background-image: url('image/hotelBaseImage.png');
+    background-image: url('component/hotelBaseImage.png');
     background-repeat: no-repeat;
     display: none;
     background-size: 100% 100%;
@@ -284,7 +284,7 @@
 /* ----------------------------------------------------------- */
 
 .hotelwalk{
-    animation: hotelwalk .6s infinite steps(2);
+    animation: hotelwalk .8s infinite steps(2);
 }
 @keyframes hotelwalk {
     0%{
@@ -304,7 +304,7 @@
     left: 17%;
     z-index: 1;
     overflow: hidden;
-    animation: hotelWhiteManAni1 20s infinite linear ;
+    animation: hotelWhiteManAni1 35s infinite linear ;
 }
 
 #hotelWhiteMan1 > img {
@@ -476,7 +476,7 @@
     left: 8%;
     z-index: 1;
     overflow: hidden;
-    animation: hotelWhiteManAni2 25s infinite linear ;
+    animation: hotelWhiteManAni2 30s infinite linear ;
 }
 
 #hotelWhiteMan2 > img {
@@ -600,7 +600,7 @@
     left: 71%;
     z-index: 1;
     overflow: hidden;
-    animation: hotelWhiteManAni3 15s infinite linear ;
+    animation: hotelWhiteManAni3 25s infinite linear ;
 }
 
 #hotelWhiteMan3 > img {

@@ -4,7 +4,7 @@
 .postOfficeInsideMap {
   height: 150%;
   width: 150%;
-  background-image: url("image/postOfficeBaseC.png");
+  background-image: url("component/postOfficeBaseC.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   display: none;

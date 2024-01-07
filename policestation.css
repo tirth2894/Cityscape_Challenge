@@ -1,7 +1,7 @@
 .policeStationInsideMap {
 	height: 130%;
 	width: 130%;
-	background-image: url('image/policestationFloor1.jpg');
+	background-image: url('component/policestationFloor1.jpg');
 	position: relative;
 	display: none;
 	background-repeat: no-repeat;

@@ -1,7 +1,7 @@
 .homeInsideMap{
     height: 130%;
     width: 130%;
-    background-image: url('image/homeFloor.png');
+    background-image: url('component/homeFloor.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: none;

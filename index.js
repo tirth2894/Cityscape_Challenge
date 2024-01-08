@@ -284,12 +284,12 @@ function mapUpdate(placeMap, objects) {
                 break;
         }
 
-    }); 
+    });
 }
 
 //For Player Movement
 function playerupdate() {
-   
+
 
     let camera_width = parseInt(getComputedStyle(camera).width);
     let camera_height = parseInt(getComputedStyle(camera).height);
@@ -401,124 +401,123 @@ function playerupdate() {
     }
 }
 
-let rightKeyEvent,leftKeyEvent,downKeyEvent,upKeyEvent;
+let rightKeyEvent, leftKeyEvent, downKeyEvent, upKeyEvent;
 let Key_UP = document.getElementById('main_Key_UP');
 let Key_Down = document.getElementById("main_Key_Down");
 let Key_Left = document.getElementById("main_Key_Left");
 let Key_Right = document.getElementById("main_Key_Right");
 
 // For Key Buttons
-function keyButtons(placeMap)
-{
+function keyButtons(placeMap) {
     let camera_width = parseInt(getComputedStyle(camera).width);
     let camera_height = parseInt(getComputedStyle(camera).height);
     let map_width = parseInt(getComputedStyle(placeMap).width);
     let map_height = parseInt(getComputedStyle(placeMap).height);
     let player_height = parseInt(getComputedStyle(player).height);
     let player_width = parseInt(getComputedStyle(player).width);
-   
-    Key_UP.addEventListener('click', upKeyEvent = () =>{
+
+    Key_UP.addEventListener('click', upKeyEvent = () => {
         pos = parseInt(getComputedStyle(placeMap).top);
 
-            if (pos < 0) {
-                placeMap.style.top = pos + speed + "px";
-                if (objectOverlap(objects)) {
-                    pos = player.getBoundingClientRect().top;
-                    player.style.top = pos + speed + "px";
-                }
+        if (pos < 0) {
+            placeMap.style.top = pos + speed + "px";
+            if (objectOverlap(objects)) {
+                pos = player.getBoundingClientRect().top;
+                player.style.top = pos + speed + "px";
             }
+        }
 
-            if (!objectOverlap(objects) || objects == undefined){
-                pos = parseInt(getComputedStyle(player).top);
-                chara.src = "component/sprite_up.png";
-                chara.classList.add("walk");
-        
-                if (pos > 0) {
-                    player.style.top = pos - speed + "px";
-                    overlap();
-                    displayMission();
-        
-                }
+        if (!objectOverlap(objects) || objects == undefined) {
+            pos = parseInt(getComputedStyle(player).top);
+            chara.src = "component/sprite_up.png";
+            chara.classList.add("walk");
+
+            if (pos > 0) {
+                player.style.top = pos - speed + "px";
+                overlap();
+                displayMission();
+
             }
+        }
 
-           
+
     });
 
 
 
-    Key_Down.addEventListener('click',downKeyEvent = () =>{
+    Key_Down.addEventListener('click', downKeyEvent = () => {
         pos = parseInt(getComputedStyle(placeMap).top);
 
-            if (Math.abs(pos) < (map_height - camera_height)) {
-                placeMap.style.top = pos - speed + "px";
-                if (objectOverlap(objects)) {
-                    pos = player.getBoundingClientRect().top;
-                    player.style.top = pos - speed + "px";
-                }
+        if (Math.abs(pos) < (map_height - camera_height)) {
+            placeMap.style.top = pos - speed + "px";
+            if (objectOverlap(objects)) {
+                pos = player.getBoundingClientRect().top;
+                player.style.top = pos - speed + "px";
             }
+        }
 
-            if (!objectOverlap(objects) || objects == undefined){
-                pos = parseInt(getComputedStyle(player).top);
-                chara.src = "component/sprite_down.png";
-                chara.classList.add("walk");
-        
-                if (pos < Math.abs(player_height - camera_height)) {
-                    player.style.top = pos + speed + "px";
-        
-                    overlap();
-                    displayMission();
-                }
+        if (!objectOverlap(objects) || objects == undefined) {
+            pos = parseInt(getComputedStyle(player).top);
+            chara.src = "component/sprite_down.png";
+            chara.classList.add("walk");
+
+            if (pos < Math.abs(player_height - camera_height)) {
+                player.style.top = pos + speed + "px";
+
+                overlap();
+                displayMission();
             }
-           
+        }
+
     });
 
-    Key_Left.addEventListener('click',leftKeyEvent = () =>{
+    Key_Left.addEventListener('click', leftKeyEvent = () => {
         pos = parseInt(getComputedStyle(placeMap).left);
 
-            if (pos < 0) {
-                placeMap.style.left = pos + speed + "px";
-                if (objectOverlap(objects)) {
-                    pos = player.getBoundingClientRect().left;
-                    player.style.left = pos + speed + "px";
-                }
+        if (pos < 0) {
+            placeMap.style.left = pos + speed + "px";
+            if (objectOverlap(objects)) {
+                pos = player.getBoundingClientRect().left;
+                player.style.left = pos + speed + "px";
             }
-            if (!objectOverlap(objects) || objects == undefined){
-                pos = parseInt(getComputedStyle(player).left);
-                chara.src = "component/sprite_left.png";
-                chara.classList.add("walk");
-        
-                if (pos > 0) {
-                    player.style.left = pos - speed + "px";
-                    overlap();
-                    displayMission();
-                }
+        }
+        if (!objectOverlap(objects) || objects == undefined) {
+            pos = parseInt(getComputedStyle(player).left);
+            chara.src = "component/sprite_left.png";
+            chara.classList.add("walk");
+
+            if (pos > 0) {
+                player.style.left = pos - speed + "px";
+                overlap();
+                displayMission();
             }
-            
+        }
+
     });
-    
 
-    Key_Right.addEventListener('click',rightKeyEvent = () =>{
+
+    Key_Right.addEventListener('click', rightKeyEvent = () => {
         pos = parseInt(getComputedStyle(placeMap).left);
 
-            if (Math.abs(pos) < (map_width - camera_width)) {
-                placeMap.style.left = pos - speed + "px";
-                if (objectOverlap(objects)) {
-                    pos = player.getBoundingClientRect().left;
-                    player.style.left = pos - speed + "px";
-                }
-             }
-             if (!objectOverlap(objects) || objects == undefined){
-                pos = parseInt(getComputedStyle(player).left);
-                chara.src = "component/sprite_right.png";
-                chara.classList.add("walk");
-        
-                if (pos < Math.abs(player_width - camera_width)) {
-                    player.style.left = pos + speed + "px";
-                    overlap();
-                    displayMission();
-                }
-             }
-           
+        if (Math.abs(pos) < (map_width - camera_width)) {
+            placeMap.style.left = pos - speed + "px";
+            if (objectOverlap(objects)) {
+                pos = player.getBoundingClientRect().left;
+                player.style.left = pos - speed + "px";
+            }
+        }
+        if (!objectOverlap(objects) || objects == undefined) {
+            pos = parseInt(getComputedStyle(player).left);
+            chara.src = "component/sprite_right.png";
+            chara.classList.add("walk");
+
+            if (pos < Math.abs(player_width - camera_width)) {
+                player.style.left = pos + speed + "px";
+                overlap();
+                displayMission();
+            }
+        }
+
     });
 
 }
@@ -614,7 +613,7 @@ function overlap() {
         playerLeft = 50;
         goinside(tempMap, objects, playerTop, playerLeft);
         flag = 0;
-        
+
     }
     else if (check(gamezone)) {
         let tempMap = document.getElementById("gamezoneMap");
@@ -627,7 +626,7 @@ function overlap() {
         mapIcon.style.display = 'none';
         goinside(tempMap, objects, playerTop, playerLeft);
         game_zone.style.display = 'block';
-       
+
     }
     else if (check(school)) {
         let tempMap = document.getElementById("schoolMap");
@@ -712,15 +711,20 @@ function goinside(placeMap, objects, playerInsideTop, playerInsideLeft) {
     let playerTop = player.getBoundingClientRect().top;
     let playerLeft = player.getBoundingClientRect().left;
 
-    keyButtons(placeMap);
+    Key_Right.removeEventListener('click', rightKeyEvent);
+    Key_Left.removeEventListener('click', leftKeyEvent);
+    Key_Down.removeEventListener('click', downKeyEvent);
+    Key_UP.removeEventListener('click', upKeyEvent);
+
     map.style.display = "none";
     placeMap.style.display = "block";
     placeMap.style.top = "0%";
     placeMap.style.left = "0%";
     player.style.top = playerInsideTop + "%";
     player.style.left = playerInsideLeft + "%";
-
-
+    
+    
+    keyButtons(placeMap);
     mapUpdate(placeMap, objects);
 
     message.innerHTML = "Press ENTER to exit..";
@@ -731,26 +735,22 @@ function goinside(placeMap, objects, playerInsideTop, playerInsideLeft) {
             main_keys.style.display = 'block';
             player.style.display = 'block';
             mapIcon.style.display = 'block';
-            if(flag == 1)
-            {
+            if (flag == 1) {
                 player.style.top = playerInsideTop + "px";
                 player.style.left = playerInsideLeft + "px";
             }
-            else{
+            else {
                 player.style.top = playerTop + "px";
                 player.style.left = playerLeft + "px";
             }
-            
+
             map.style.top = mapTop + "px";
             map.style.left = mapLeft + "px";
             placeMap.style.display = "none";
             map.style.display = "block";
             message.innerHTML = "";
             removeEventListener('keydown', mapUpdateEvent);
-            Key_Right.removeEventListener('click', rightKeyEvent);
-            Key_Left.removeEventListener('click', leftKeyEvent);
-            Key_Down.removeEventListener('click', downKeyEvent);
-            Key_UP.removeEventListener('click', upKeyEvent);
+
 
         }
     })
@@ -769,8 +769,7 @@ function carCollision() {
             if (check(cars[i])) {
                 if (!carStates[i]) {
 
-                    if(soundPlay)
-                    {
+                    if (soundPlay) {
                         hitSound.play();
                     }
                     cars[i].style.animationPlayState = "paused";
@@ -803,8 +802,7 @@ function cityPeople() {
         for (let i = 0; i < cityPeople.length; i++) {
             if (check(cityPeople[i])) {
                 if (!peopleStates[i]) {
-                    if(soundPlay)
-                    {
+                    if (soundPlay) {
                         hitSound.play();
                     }
                     cityPeople[i].style.animationPlayState = "paused";
@@ -945,7 +943,7 @@ function displayMission() {
 
         messageContainer.style.display = "flex";
         camera.style.display = "none";
-        
+
         timeOutID1 = setTimeout(() => {
             messageContainer.style.display = "none";
             camera.style.display = "block";
